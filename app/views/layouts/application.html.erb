@@ -10,6 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    
+    <p><%= flash[notice] %></p>
+    
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
