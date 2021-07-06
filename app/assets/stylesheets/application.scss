@@ -17,9 +17,47 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-
+// 初期位置の確定
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+header {
+  background-color: #ff0000;
+}
+
+// 背景画像の設定
+.main-visual {
+  background-image: url(top_image.jpg);
+  width: auto;
+  height: 600px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
+.about-contents {
+  width: 600px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.beginner-contents {
+  width: 500px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.already_work-contents {
+  width: 500px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+footer {
+  background-color: #ff0000;
 }

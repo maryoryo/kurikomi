@@ -11,4 +11,5 @@ class HomesController < ApplicationController
 
   def already_work
   end
+  
 end

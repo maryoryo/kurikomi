@@ -1,5 +1,20 @@
-<div class="container">
-  <div class="row">
-    
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto">
+        <%= link_to "/" do %>
+          <%= image_tag "logo.png", :class => "logo", :alt => "クリコミ", width: 200, class:"justify-content-center" %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <ul class="nav justify-content-center pt-4 pb-2">　
+        <li class="nav-item mr-4"><%= '会員一覧' %></li>
+        <li class="nav-item"><%= 'コミュニティ一覧' %></li>
+        <li class="nav-item ml-4"><%= 'ジャンル一覧' %></li>
+        <li class="nav-item"><%= '新規登録' %></li>
+        <li class="nav-item"><%= 'ログイン' %></li>
+      </ul>
+    </div>
   </div>
-</div>
+</header>
