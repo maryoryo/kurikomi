@@ -1,8 +1,8 @@
 class Public::HomesController < ApplicationController
-  
+
   def top
   end
-  
+
   def about
   end
 
@@ -11,5 +11,5 @@ class Public::HomesController < ApplicationController
 
   def already_work
   end
-  
+
 end
