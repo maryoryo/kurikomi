@@ -1,0 +1,40 @@
+<div class="container my-5">
+  <h2>新規登録画面</h2>
+  
+  <div class="pl-4">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "public/users/shared/error_messages", resource: resource %>
+      
+      <div class="field mt-3">
+        <%= f.label :ニックネーム %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+    
+      <div class="field mt-3">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+    
+      <div class="field mt-3">
+        <%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+    
+      <div class="field mt-3">
+        <%= f.label :パスワード（確認用） %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+    
+      <div class="actions mt-3">
+        <%= f.submit "登録する", class:"btn btn-success col-3 mx-auto" %>
+      </div>
+    <% end %>
+    
+    <div class="mt-3">
+      <%= render "public/users/shared/links" %>
+    </div>
+  </div>
+</div>
