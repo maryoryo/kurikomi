@@ -25,12 +25,27 @@
 }
 
 header {
-  background-color: #ff0000;
+  background-color: #E55E4C;
+  font-family: "Noto Sans Mono CJK JP"; font-weight: bold;
 }
 
+// #notice {
+//   width: auto;
+//   height: 30px;
+//   color: white;
+//   background-color: blue;
+// }
+
+// #alert {
+//   width: auto;
+//   height: 30px;
+//   color: white;
+//   background-color: red;
+// }
+
 // 背景画像の設定
-.main-visual {
-  background-image: url(top_image.jpg);
+.top-visual {
+  background-image: url(main.jpg);
   width: auto;
   height: 600px;
   background-size: contain;
@@ -41,8 +56,8 @@ header {
 }
 
 .about-contents {
-  width: 600px;
-  height: 200px;
+  width: 500px;
+  height: 150px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -58,6 +73,42 @@ header {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+// 背景画像の設定
+.about-visual {
+  background-image: url(about.jpg);
+  width: auto;
+  height: 800px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
+// 背景画像の設定
+.beginner-visual {
+  background-image: url(beginner.jpg);
+  width: auto;
+  height: 800px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
+// 背景画像の設定
+.already_work-visual {
+  background-image: url(already_work.jpg);
+  width: auto;
+  height: 800px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
 footer {
-  background-color: #ff0000;
+  background-color: #E55E4C;
 }

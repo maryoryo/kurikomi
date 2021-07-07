@@ -8,13 +8,28 @@
       </div>
     </div>
     <div>
-      <ul class="nav justify-content-center pt-4 pb-2">　
-        <li class="nav-item mr-4"><%= '会員一覧' %></li>
-        <li class="nav-item"><%= 'コミュニティ一覧' %></li>
-        <li class="nav-item ml-4"><%= 'ジャンル一覧' %></li>
-        <li class="nav-item"><%= '新規登録' %></li>
-        <li class="nav-item"><%= 'ログイン' %></li>
-      </ul>
+      <% if admin_signed_in? %>
+        <ul class="nav justify-content-center nav-justified pt-4 pb-2">
+          <li class="nav-item"><%= link_to "TOPページへ", admin_homes_top_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "コミュニティ一覧", admin_groups_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class:"text-white" %></li>
+        </ul>
+      <% elsif user_signed_in? %>
+        <ul class="nav justify-content-center nav-justified pt-4 pb-2">
+          <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "会員一覧", users_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "コミュニティ一覧", groups_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-white" %></li>
+        </ul>
+      <% else %>
+        <ul class="nav nav-tabs justify-content-center nav-justified pt-4 pb-2">
+          <li class="nav-item"><%= link_to 'TOPページ', root_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to '概要', about_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class:"text-white" %></li>
+          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class:"text-white" %></li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </header>

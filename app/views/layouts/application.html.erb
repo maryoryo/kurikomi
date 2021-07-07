@@ -11,10 +11,13 @@
 
   <body>
     <%= render "layouts/header" %>
+    <div id="notice" class="bg-success text-center text-white"><%= notice %></div>
+    <div id="alert" class="bg-danger text-center text-white"><%= alert %></div>
     <main>
-      <p><%= flash[notice] %></p>
+      
       <%= yield %>
     </main>
+    
     <%= render "layouts/footer" %>
   </body>
 </html>

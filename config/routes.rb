@@ -1,54 +1,43 @@
 Rails.application.routes.draw do
-  
-  
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
 
   devise_for :admins, controllers: {
-    sessions: 'admin/users/sessions',
-    registrations: 'admin/users/registrations'
+    sessions: 'admin/admins/sessions',
+    registrations: 'admin/admins/registrations'
   }
   namespace :admin do
-    get 'groups/index'
-    get 'groups/show'
-    get 'groups/new'
-    get 'groups/create'
-    get 'groups/edit'
-    get 'groups/update'
+    get 'homes/top' => 'homes#top'
     
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
     
-    get 'genres/index'
-    get 'genres/edit'
+    resources :users, only: [:index, :show, :edit, :update]
+    
+    resources :genres, only: [:index, :edit]
+
   end
-  
-  
+
+
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    sessions: 'public/users/sessions',
+    registrations: 'public/users/registrations'
   }
-  namespace :public do
-    get 'groups/index'
-    get 'groups/show'
-    get 'groups/new'
-    get 'groups/create'
-    get 'groups/edit'
-    get 'groups/update'
+  scope module: :public do
+    root 'homes#top'
+    get 'homes/about' => 'homes#about', as: 'about'
+    get 'homes/beginner'
+    get 'homes/already_work'
     
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/quit'
-    get 'users/withdraw'
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
+    
+    resources :users, only: [:index, :show, :edit, :update]
+    
+    get 'users/quit' => 'users#quit'
+    get 'users/withdraw' => 'users#withdraw'
   end
-  
-  
-  root 'homes#top'
-  get 'homes/about'
-  get 'homes/beginner'
-  get 'homes/already_work'
-  
+
+
 end
