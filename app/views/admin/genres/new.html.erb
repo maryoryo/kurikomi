@@ -1,0 +1,13 @@
+<div class="container">
+  <div>
+    <%= form_with model: @genre, url:admin_genres_path, method: :post, local: true do |f| %>
+      <div class="field mt-3">
+        <%= f.label :ジャンル名 %><br />
+        <%= f.text_field :genre, autofocus: true %>
+      </div>
+      <div>
+        <%= f.submit "登録する", class:"btn btn-success col-3 mx-auto" %>
+      </div>
+    <% end %>
+  </div>
+</div>

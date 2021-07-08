@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>PF画像</th>
+        <th>ニックネーム</th>
+        <th>参加コミュニティ数</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %></td>
+        <td><%= user.name %></td>
+        <td><%= user.group.count %></td>
+        <td><%= link_to "詳細", admin_user_path(user) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

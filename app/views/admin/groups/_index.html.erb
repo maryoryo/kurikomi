@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>コミュニティ画像</th>
+        <th>コミュニティ名</th>
+        <th>参加人数</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% groups.each do |group| %>
+      <tr>
+        <td><%= attachment_image_tag group, :group_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %></td>
+        <td><%= group.name %></td>
+        <td><%= group.group_users.count %></td>
+        <td><%= link_to "詳細", admin_group_path(group) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

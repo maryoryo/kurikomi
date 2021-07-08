@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     
     resources :users, only: [:index, :show, :edit, :update]
     
-    resources :genres, only: [:index, :edit]
+    resources :genres, only: [:index, :show, :new, :create, :edit, :destroy]
+    
+    get 'searchs/search' => 'searchs#search'
 
   end
 
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
     
     get 'users/quit' => 'users#quit'
     get 'users/withdraw' => 'users#withdraw'
+    
+    get 'searchs/search' => 'searchs#search'
   end
 
 

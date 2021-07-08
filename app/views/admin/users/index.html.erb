@@ -1,32 +1,9 @@
 <div class="container">
-  <h2>ユーザー一覧</h2>
+  <div class="row my-5">
+    <h2>ユーザー一覧</h2>
+    <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
+  </div>
   
-  <table class="table">
-    <thead>
-      <tr>
-        <th>会員ID</th>
-        <th>PF画像</th>
-        <th>ニックネーム</th>
-        <th>参加コミュニティ数</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.profile_image %></td>
-        <td><%= user.name %></td>
-        <td><%= user.group.count %></td>
-        <td>
-          <% if user.is_active? %>
-          
-          <% else %>
-          
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'admin/users/index', users: @users %>
+  
 </div>
