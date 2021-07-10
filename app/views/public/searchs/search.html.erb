@@ -1,13 +1,15 @@
-<section class="inner">
-  <% if @records.first %>
-    <% if @model == "user" %>
-      <%= render 'admin/users/index', users: @records %>
-    <% elsif @model == "group" %>
-      <%= render 'admin/groups/index', groups: @records %>
+<div class="container">
+  <section class="inner">
+    <% if @records.first %>
+      <% if @model == "user" %>
+        <%= render 'admin/users/index', users: @records %>
+      <% elsif @model == "group" %>
+        <%= render 'admin/groups/index', groups: @records %>
+      <% else %>
+        <%= render 'admin/genres/index', genres: @records %>
+      <% end %>
     <% else %>
-      <%= render 'admin/genres/index', genres: @records %>
+      <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
     <% end %>
-  <% else %>
-    <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
-  <% end %>
-</section>
+  </section>
+</div>
