@@ -1,18 +1,18 @@
 <table class="table">
-    <thead>
-      <tr>
-        <th>ジャンル名</th>
-        <th>付随コミュニティ数</th>
-        <th>詳細</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% genres.each do |genre| %>
-      <tr>
-        <td><%= genre.name %></td>
-        <td><%= genre.groups.count %></td>
-        <td><%= link_to "詳細", admin_genre_path(genre) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>ジャンル名</th>
+      <th>付随コミュニティ数</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% genres.each do |genre| %>
+    <tr>
+      <td><%= genre.name %></td>
+      <td><%= genre.groups.count %></td>
+      <td><%= link_to "詳細", admin_genre_path(genre) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

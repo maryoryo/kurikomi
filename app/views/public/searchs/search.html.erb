@@ -1,2 +1,13 @@
-<h1>Public::Searchs#search</h1>
-<p>Find me in app/views/public/searchs/search.html.erb</p>
+<section class="inner">
+  <% if @records.first %>
+    <% if @model == "user" %>
+      <%= render 'admin/users/index', users: @records %>
+    <% elsif @model == "group" %>
+      <%= render 'admin/groups/index', groups: @records %>
+    <% else %>
+      <%= render 'admin/genres/index', genres: @records %>
+    <% end %>
+  <% else %>
+    <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+  <% end %>
+</section>

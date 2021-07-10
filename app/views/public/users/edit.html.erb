@@ -1,2 +1,34 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  
+  <h2>ユーザー情報編集画面</h2>
+  
+  <dix>
+    <%= form_with model: @user, url: user_path, local: true do |f| %>
+    
+     <div class="field">
+      <%= f.label :プロフィール画像 %>
+      <%= f.attachment_field :profile_image %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :ニックネーム %>
+      <%= f.text_field :name, autofocus: true%>
+    </div>
+    
+    <div class="field">
+      <%= f.label :概要%>
+      <%= f.text_area :introduction %>
+    </div>
+    
+    <!--<div class="field">-->
+    <!--  <%#= f.label :新着動画%>-->
+    <!--  <%#= text_field %>-->
+    <!--</div>-->
+    
+    <div class="actions">
+      <%= f.submit "保存する" %>
+    </div>
+   
+    <% end %>
+  </dix>
+</div>

@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   
+  attachment :profile_image, destroy: false
+  
   def self.search_for(content,method)
     if method == 'perfect'
       User.where(name: content)
@@ -22,6 +24,6 @@ class User < ApplicationRecord
     end
   end
   
-  attachment :profile_image, destroy: false
+  
   
 end

@@ -15,7 +15,7 @@
       <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %></td>
       <td><%= user.name %></td>
       <td><%= user.group.count %></td>
-      <td><%= link_to "詳細", admin_user_path(user) %></td>
+      <td><%= link_to "詳細", user_path(user) %></td>
     </tr>
     <% end %>
   </tbody>
