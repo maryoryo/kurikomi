@@ -3,9 +3,6 @@
     <h2>ジャンル一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
   </div>
-  <div>
-    <%= link_to "ジャンルを追加", new_admin_genre_path %>
-  </div>
   
   <%= render 'admin/genres/index', genres: @genres %>
   

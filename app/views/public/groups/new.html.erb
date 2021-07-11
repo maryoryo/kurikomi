@@ -1,2 +1,33 @@
-<h1>Public::Groups#new</h1>
-<p>Find me in app/views/public/groups/new.html.erb</p>
+<div class="container">
+  <h2>コミュニティ追加</h2>
+  
+  <div>
+    <%= form_with model: @group, local:true do |f| %>
+    
+    <div class="field">
+      <%= f.label :グループ画像%>
+      <%= f.attachment_field :group_image %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :グループ名%>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :概要 %>
+      <%= f.text_area :introduction %>
+    </div>
+    
+    <!--<div class="field">-->
+      <%#= f.label :ジャンル %>
+      <%#= f.text_field : %>
+    <!--</div>-->
+    
+    <div class="actions">
+      <%= f.submit "保存する" %>
+    </div>
+    
+    <% end %>
+  </div>
+</div>
