@@ -2,6 +2,8 @@ class Genre < ApplicationRecord
   
   has_many :groups
   
+  validates :name, presence: true
+  
   def self.search_for(content,method)
     if method == 'perfect'
       User.where(genre: content)

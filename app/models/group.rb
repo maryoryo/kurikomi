@@ -3,6 +3,9 @@ class Group < ApplicationRecord
   has_many :group_users
   has_many :users, through: :group_users
   
+  validates :name, presence: true, length: { maximum: 25 }
+  
+  
   def self.search_for(content,method)
     if method == 'perfect'
       User.where(group: content)

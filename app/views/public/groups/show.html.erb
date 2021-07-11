@@ -1,6 +1,12 @@
 <div class="container">
-  <h2><%= @group.name %></h2>
   <div class="row">
-    
+    <%= attachment_image_tag @group, :group_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
+    <h2><%= @group.name %></h2>
   </div>
+  <div>
+    <h4>概要</h4>
+    <div><%= @group.introduction %></div>
+  </div>
+  
+  
 </div>
