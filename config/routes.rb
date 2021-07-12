@@ -37,7 +37,17 @@ Rails.application.routes.draw do
     get 'homes/beginner'
     get 'homes/already_work'
     
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      post 'join' => 'groups#join'
+          delete 'unjoin' => 'groups#unjoin'
+    end
+    #   resources :users, only: [] do
+    #     member do
+    #       post 'join' => 'groups#join'
+    #       delete 'unjoin' => 'groups#unjoin'
+    #     end
+    #   end
+    # end
     
     resources :users, only: [:index, :show, :edit, :update]
     

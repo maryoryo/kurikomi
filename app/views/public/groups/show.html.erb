@@ -7,6 +7,16 @@
     <h4>概要</h4>
     <div><%= @group.introduction %></div>
   </div>
+  <div>
+    <% if @group.owner_id == current_user.id %>
+      <%= link_to "グループを編集する", edit_group_path(@group), class: "btn btn-sm btn-success" %>
+      <%= link_to "グループを削除する", group_path(@group), class: "btn btn-sm btn-danger" %>
+    <% elsif @group.users.include?(current_user) %>
+      <%= link_to "グループから脱退", group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+    <% else %>
+      <%= link_to "グループに参加する", join_group_user_path(group_id: @group, user_id: @user), class: "btn btn-sm btn-success" %>
+    <% end %>
+  </div>
   
   
 </div>
