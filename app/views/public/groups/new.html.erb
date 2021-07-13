@@ -19,10 +19,10 @@
       <%= f.text_area :introduction %>
     </div>
     
-    <!--<div class="field">-->
-      <%#= f.label :ジャンル %>
-      <%#= f.text_field : %>
-    <!--</div>-->
+    <div class="field">
+      <%= f.label :ジャンル %>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {:prompt => "-- 選択してください --"}, {class: "genre_width px-1"}) %>
+    </div>
     
     <div class="actions">
       <%= f.submit "保存する" %>

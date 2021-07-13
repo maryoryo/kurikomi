@@ -8,12 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @groups = Group.all
   end
 
-  def edit
-  end
-  
-  def update
-    
-  end
 end

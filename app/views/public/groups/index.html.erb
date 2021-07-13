@@ -3,8 +3,10 @@
     <h2>コミュニティ一覧</h2>
     <div class="ml-auto"><%= render 'layouts/public_search' %></div>
   </div>
-  <div class ="ml-auto">
-    <%= link_to "コミュニティを追加", new_group_path %>
+  <div class="row my-5">
+    <div class="ml-auto">
+      <%= link_to "コミュニティを追加", new_group_path %>
+    </div>
   </div>
   
   <%= render 'public/groups/index', groups: @groups %>

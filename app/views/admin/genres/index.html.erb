@@ -1,7 +1,18 @@
 <div class="container">
-  <div class="row my-5">
+  <div class="row my-4">
     <h2>ジャンル一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
+  </div>
+  <div class="row my-3">
+    <div class="ml-auto">
+      <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+        <div class="form-field">
+          <%= f.label :ジャンル追加 %>
+          <%= f.text_field :name, :placeholder => "ジャンル名" %>
+          <%= f.submit "作成する", class:"btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
   </div>
   
   <%= render 'admin/genres/index', genres: @genres %>

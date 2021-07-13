@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <h2><%= @user.name %>さんのページ</h2>
   <div class="row">
     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
@@ -17,14 +17,20 @@
       </tr>
       <tr>
         <td>参加コミュニティ</td>
-        <td><%= @user.group.name %></td>
+        <td>
+          <% @groups.each do |group| %>
+            <%= group.name %>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
-  
+
   <div>
-    <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-success" %>
+    <% if @user.id == current_user.id %>
+      <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-success" %>
+    <% end %>
   </div>
-  
+
 </div>
 

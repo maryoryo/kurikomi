@@ -1,4 +1,8 @@
 class Admin::GroupsController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
+  
   def index
     @groups = Group.all 
   end
@@ -8,14 +12,22 @@ class Admin::GroupsController < ApplicationController
   end
 
   def new
+    @group = Group.new
   end
 
   def create
+    @group = Group.new
+    
   end
 
   def edit
   end
 
   def update
+  end
+  
+  def destroy
+  
+    
   end
 end

@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top' => 'homes#top'
     
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show]
     
-    resources :genres, only: [:index, :show, :new, :create, :edit, :destroy]
+    resources :genres, only: [:index, :show, :create, :edit, :update, :destroy]
     
     get 'searchs/search' => 'searchs#search'
 
@@ -38,8 +38,9 @@ Rails.application.routes.draw do
     get 'homes/already_work'
     
     resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      post 'join' => 'groups#join'
-          delete 'unjoin' => 'groups#unjoin'
+      get 'join' => 'groups#join'
+      delete 'unjoin' => 'groups#unjoin'
+      get 'members' => 'groups#members'
     end
     #   resources :users, only: [] do
     #     member do

@@ -1,6 +1,5 @@
 class Public::SearchsController < ApplicationController
   
-   before_action :authenticate_user!
   
   def search
     @model = params[:model]

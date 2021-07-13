@@ -17,7 +17,11 @@
       </tr>
       <tr>
         <td>参加コミュニティ</td>
-        <td><%= @user.group.name %></td>
+        <td>
+          <% @groups.each do |group| %>
+            <%= group.name %>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
