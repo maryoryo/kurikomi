@@ -25,8 +25,6 @@ class Public::UsersController < ApplicationController
   def quit
   end
 
-  def withdraw
-  end
 
 
   private

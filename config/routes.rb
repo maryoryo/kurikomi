@@ -42,10 +42,10 @@ Rails.application.routes.draw do
       resources :group_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     end
     
-    resources :users, only: [:index, :show, :edit, :update]
-    
-    get 'users/quit' => 'users#quit'
-    get 'users/withdraw' => 'users#withdraw'
+    resources :users, only: [:index, :show, :edit, :update] do
+      get 'users/quit' => 'users#quit'
+      get 'users/withdraw' => 'users#withdraw'
+    end
     
     get 'searchs/search' => 'searchs#search'
     
