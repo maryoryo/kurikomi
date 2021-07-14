@@ -2,7 +2,7 @@
   <h2>コミュニティ追加</h2>
   
   <div>
-    <%= form_with model: @group, local:true do |f| %>
+    <%= form_with model: @group, url: groups_path, method: :post, local:true do |f| %>
     
     <div class="field">
       <%= f.label :グループ画像%>

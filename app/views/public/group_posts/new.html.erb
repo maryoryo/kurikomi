@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>投稿フォーム</h2>
+  <div>
+    <%= form_with(model: [@group, @group_post], url: group_group_posts_path, method: :post, local: true) do |f| %>
+    <div class="form-field">
+      <%= f.label :タイトル %>
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :投稿内容 %>
+      <%= f.text_area :content %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.submit "投稿する", class:"btn btn-success" %>
+    </div>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    
+    
+  </div>
+</div>

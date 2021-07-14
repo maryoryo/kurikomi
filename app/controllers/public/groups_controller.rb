@@ -1,7 +1,7 @@
 class Public::GroupsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -9,6 +9,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @group_posts = GroupPost.all
   end
 
   def join
@@ -31,6 +32,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     @group.users << current_user
+
     if @group.save
       redirect_to group_path(@group)
     else
@@ -67,12 +69,12 @@ class Public::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :group_image)
+    params.require(:group).permit(:name, :introduction, :group_image, :genre)
   end
 
   def ensure_correct_user
     @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
+    unless @group.owner_id == current_user.id || current_admin
       redirect_to groups_path
     end
   end

@@ -1,2 +1,49 @@
-<h1>Admin::Groups#show</h1>
-<p>Find me in app/views/admin/groups/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= attachment_image_tag @group, :group_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
+    <h2><%= @group.name %></h2>
+  </div>
+  <div>
+    <h4>概要</h4>
+    <div><%= @group.introduction %></div>
+  </div>
+  
+  <div>
+    <%= link_to "メンバー一覧", group_members_path(@group) %>
+  </div>
+  
+  <div>
+    <%= link_to "グループを編集する", edit_group_path(@group), class: "btn btn-sm btn-success" %>
+    <%= link_to "グループを削除する", group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-sm btn-danger" %>
+  </div>
+  
+  <div>
+    <h4>投稿一覧</h4>
+    <div><%= link_to "投稿する", new_group_group_post_path(@group.id) %></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>投稿内容</th>
+          <th>投稿者</th>
+          <th>Pv数</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group_posts.each do |group_post| %>
+          <tr>
+            <td><%= group_post.title %></td>
+            <td><%= group_post.content %></td>
+            <td><%= group_post.user.name %></td>
+            <td><%#= group_post. %></td>
+            <td><%= link_to "詳細", group_group_post_path(group_post) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+  
+</div>

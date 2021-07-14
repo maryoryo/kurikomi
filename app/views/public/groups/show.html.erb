@@ -23,5 +23,31 @@
     <% end %>
   </div>
   
+  <div>
+    <h4>投稿一覧</h4>
+    <div><%= link_to "投稿する", new_group_group_post_path(@group.id) %></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>投稿内容</th>
+          <th>投稿者</th>
+          <th>Pv数</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group_posts.each do |group_post| %>
+          <tr>
+            <td><%= group_post.title %></td>
+            <td><%= group_post.content %></td>
+            <td><%= group_post.user.name %></td>
+            <td><%#= group_post. %></td>
+            <td><%= link_to "詳細", group_group_post_path(group_post) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   
 </div>

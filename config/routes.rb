@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
 
 
-
-  namespace :public do
-    get 'genres/index'
-    get 'genres/show'
-  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -16,7 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top' => 'homes#top'
     
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :group_posts, only: [:index, :show, :new, :create, :destroy]
+    end
     
     resources :users, only: [:index, :show]
     
@@ -41,14 +39,8 @@ Rails.application.routes.draw do
       get 'join' => 'groups#join'
       delete 'unjoin' => 'groups#unjoin'
       get 'members' => 'groups#members'
+      resources :group_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     end
-    #   resources :users, only: [] do
-    #     member do
-    #       post 'join' => 'groups#join'
-    #       delete 'unjoin' => 'groups#unjoin'
-    #     end
-    #   end
-    # end
     
     resources :users, only: [:index, :show, :edit, :update]
     
@@ -56,6 +48,8 @@ Rails.application.routes.draw do
     get 'users/withdraw' => 'users#withdraw'
     
     get 'searchs/search' => 'searchs#search'
+    
+    resources :genres, only: [:index, :show]
   end
 
 

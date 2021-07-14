@@ -9,6 +9,7 @@ class Admin::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @group_posts = @group.group_posts
   end
 
   def new
