@@ -6,6 +6,8 @@ class Public::GroupPostsController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @group_post = GroupPost.find(params[:id])
+    @group_post_comments = GroupPostComment.all
+    @group_post_comment = GroupPostComment.new
   end
 
   def new

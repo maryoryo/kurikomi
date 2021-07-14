@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2021_07_14_193537) do
 
   create_table "group_post_comments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "group_id"
+    t.integer "group_post_id"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_post_comments_on_group_id"
+    t.index ["group_post_id"], name: "index_group_post_comments_on_group_post_id"
     t.index ["user_id"], name: "index_group_post_comments_on_user_id"
   end
 
