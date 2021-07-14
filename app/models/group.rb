@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
   has_many :group_posts, dependent: :destroy
   # has_many :admins, through: :group_users
-  
+  has_many :group_post_comment, dependent: :destroy
   
   validates :name, presence: true, length: { maximum: 25 }
   validates :introduction, presence: true

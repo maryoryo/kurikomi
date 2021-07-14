@@ -4,30 +4,32 @@ class Public::GroupPostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
-    @group = Group.find_by(params[:group_id])
-    @group_post = GroupPost.find_by(params[:id])
+    @group = Group.find(params[:group_id])
+    @group_post = GroupPost.find(params[:id])
   end
 
   def new
-    @group = Group.find_by(params[:group_id])
-    @group_post = current_user.group_posts.new
+    @group = Group.find(params[:group_id])
+    @group_post = GroupPost.new
   end
 
   def create
-    @group = Group.find_by(params[:group_id])
-    @group_post = current_user.group_posts.new(group_post_params)
+    @group = Group.find(params[:group_id])
+    @group_post = GroupPost.new(group_post_params)
     @group_post.group_id = params[:group_id]
+    @group_post.user_id = current_user.id
+    
     if @group_post.save
       redirect_to group_group_post_path(@group, @group_post)
     else
-      @group = Group.find_by(params[:group_id])
+      @group = Group.find(params[:group_id])
       render 'new'
     end
   end
   
   def edit
-    @group_post = GroupPost.find(params[:id]) 
     @group = Group.find(params[:group_id])
+    @group_post = GroupPost.find(params[:id]) 
   end
   
   def update
@@ -38,9 +40,10 @@ class Public::GroupPostsController < ApplicationController
   end
 
   def destroy
-    @group_post = GroupPost.find_by(params[:id])
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @group_post = GroupPost.find(params[:id])
     @group_post.destroy
+    # @group = Group.find(params[:group_id])
     redirect_to group_path(@group)
   end
 

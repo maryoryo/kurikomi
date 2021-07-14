@@ -9,7 +9,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @group_posts = GroupPost.all
+    @group_posts = @group.group_posts.all
   end
 
   def join

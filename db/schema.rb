@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_174504) do
+ActiveRecord::Schema.define(version: 2021_07_14_193537) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2021_07_13_174504) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "group_post_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_post_comments_on_group_id"
+    t.index ["user_id"], name: "index_group_post_comments_on_user_id"
   end
 
   create_table "group_posts", force: :cascade do |t|

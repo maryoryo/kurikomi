@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @groups = Group.all
+    @groups = @user.groups.all
   end
 
   def edit

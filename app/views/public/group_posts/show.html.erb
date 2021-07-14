@@ -1,28 +1,28 @@
 <div class="container">
   <h2><%= @group_post.title %></h2>
-  
+
   <div>
     <h4>投稿者</h4>
     <%= @group_post.user.name %>
   </div>
-  
+
   <div>
     <h4>作成日時</h4>
     <%= @group_post.created_at.to_s(:datetime_jp) %>
     <h4>更新日時</h4>
     <%= @group_post.updated_at.to_s(:datetime_jp) %>
   </div>
-  
+
   <div>
     <%= @group_post.content %>
   </div>
-  
+
   <div>
     <% if @group_post.user == current_user %>
       <%= link_to "編集する", edit_group_group_post_path(@group_post.group, @group_post) %>
-      <%= link_to "削除する", group_group_post_path(@group_post), method: :delete, "data-confirm" => "削除しますか？" %>
+      <%= link_to "削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？" %>
     <% end %>
     <%= link_to "グループトップへ", group_path(@group) %>
   </div>
-  
+
 </div>
