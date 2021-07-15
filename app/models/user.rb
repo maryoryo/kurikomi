@@ -9,7 +9,7 @@ class User < ApplicationRecord
   
   has_many :group_posts, dependent: :destroy
   
-  has_many :group_post_comment, dependent: :destroy
+  has_many :group_post_comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 25 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

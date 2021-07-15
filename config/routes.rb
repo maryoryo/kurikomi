@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       resources :group_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     end
     
-    resources :group_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :group_posts do
       resources :group_post_comments, only: [:create, :destroy]
     end
     

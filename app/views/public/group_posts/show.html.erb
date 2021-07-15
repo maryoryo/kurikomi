@@ -19,14 +19,15 @@
   
   <div>
     <% @group_post_comments.each do |group_post_comment| %>
-      <%= attachment_image_tag group_post_comment, :profile_imege, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
+      <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
       <%= group_post_comment.user.name %>
       <%= group_post_comment.comment %>
+      <%= link_to "削除", group_post_group_post_comment_path(@group_post.id, group_post_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
     <% end %>
   </div>
   
   <div>
-    <%= form_with model: @group_post_comment,url: group_post_group_post_comments_path(@group_post), local: true do |f| %>
+    <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), local: true do |f| %>
       <%=f.label :コメント %>
       <%=f.text_field :comment %>
       <%=f.submit "送信する",class:"btn btn-success" %>
