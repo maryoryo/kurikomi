@@ -45,7 +45,7 @@ header {
 
 // 背景画像の設定
 .top-visual {
-  background-image: image-url(main.jpg);
+  background-image: image-url("main.jpg");
   width: auto;
   height: 600px;
   background-size: contain;
@@ -75,7 +75,7 @@ header {
 
 // 背景画像の設定
 .about-visual {
-  background-image: image-url(about.jpg);
+  background-image: image-url("about.jpg");
   width: auto;
   height: 800px;
   background-size: contain;
@@ -87,7 +87,7 @@ header {
 
 // 背景画像の設定
 .beginner-visual {
-  background-image: image-url(beginner.jpg);
+  background-image: image-url("beginner.jpg");
   width: auto;
   height: 800px;
   background-size: contain;
@@ -99,7 +99,7 @@ header {
 
 // 背景画像の設定
 .already_work-visual {
-  background-image: image-url(already_work.jpg);
+  background-image: image-url("already_work.jpg");
   width: auto;
   height: 800px;
   background-size: contain;
