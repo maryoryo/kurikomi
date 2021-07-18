@@ -21,4 +21,13 @@ class Group < ApplicationRecord
   end
   
   attachment :group_image, destroy: false
+  
+  #   is_impressionable
+# ➡︎ Tweetモデルでimpressionistを使用できるようにします。
+
+# counter_cache: true
+# ➡︎ impressions_countカラムがupdateされるようにします。
+  
+  is_impressionable counter_cache: true
+  
 end
