@@ -18,6 +18,26 @@
   </div>
   
   <div>
+    閲覧数:<%= @group_post.impressionist_count %>
+  </div>
+  
+  <div>
+    <% if @group_post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to group_post_group_post_favorite_path(@group_post), method: :delete do %>
+        ♥<%= @group_post.group_post_favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to group_post_group_post_favorites_path(@group_post), method: :post do %>
+        ♡<%= @group_post.group_post_favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  </div>
+  
+  <div>
     <% @group_post_comments.each do |group_post_comment| %>
       <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
       <%= group_post_comment.user.name %>

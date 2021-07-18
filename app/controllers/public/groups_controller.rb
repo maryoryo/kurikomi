@@ -10,6 +10,7 @@ class Public::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_posts = @group.group_posts.all
+    impressionist(@group.group_posts, nil, unique: [:session_hash])
   end
 
   def join

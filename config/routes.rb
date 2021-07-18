@@ -47,10 +47,14 @@ Rails.application.routes.draw do
     
     resources :group_posts do
       resources :group_post_comments, only: [:create, :destroy]
+      resources :group_post_favorites, only: [:create, :destroy]
     end
     
     resources :users, only: [:index, :show, :edit, :update] do
       get 'users/quit' => 'users#quit'
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
     
     get 'searchs/search' => 'searchs#search'

@@ -8,6 +8,8 @@ class Public::GroupPostsController < ApplicationController
     @group_post = GroupPost.find(params[:id])
     @group_post_comments = GroupPostComment.all
     @group_post_comment = GroupPostComment.new
+    @group_post_favorite = @group_post.group_post_favorites.new
+    impressionist(@group_post, nil, unique: [:session_hash])
   end
 
   def new
@@ -20,7 +22,6 @@ class Public::GroupPostsController < ApplicationController
     @group_post = GroupPost.new(group_post_params)
     @group_post.group_id = params[:group_id]
     @group_post.user_id = current_user.id
-    
     if @group_post.save
       redirect_to group_group_post_path(@group, @group_post)
     else
@@ -45,7 +46,6 @@ class Public::GroupPostsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group_post = GroupPost.find(params[:id])
     @group_post.destroy
-    # @group = Group.find(params[:group_id])
     redirect_to group_path(@group)
   end
 

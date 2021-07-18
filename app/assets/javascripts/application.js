@@ -21,7 +21,7 @@
 /*global $*/
 
 $(function() {
-   tabs = $(".tab-item"); // tabのクラスを全て取得し、変数tabsに配列で定義
+   var tabs = $(".tab-item"); // tabのクラスを全て取得し、変数tabsに配列で定義
   $(".tab-item").on("click", function() { // tabをクリックしたらイベント発火
     $(".active").removeClass("active"); // activeクラスを消す
     $(this).addClass("active"); // クリックした箇所にactiveクラスを追加

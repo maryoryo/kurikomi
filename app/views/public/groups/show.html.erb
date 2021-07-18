@@ -42,7 +42,7 @@
             <td><%= group_post.title %></td>
             <td><%= group_post.content %></td>
             <td><%= group_post.user.name %></td>
-            <td><%#= group_post. %></td>
+            <td>閲覧数:<%= @group.group_post.impressionist_count %></td>
             <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
           </tr>
         <% end %>
