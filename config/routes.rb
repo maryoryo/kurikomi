@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  
-  namespace :public do
-    get 'group_post_comments/new'
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -15,17 +10,20 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top' => 'homes#top'
     
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      resources :group_posts, only: [:index, :show, :new, :create, :destroy]
-    end
+    get 'searchs/search' => 'searchs#search'
     
     resources :users, only: [:index, :show]
     
-    resources :genres, only: [:index, :show, :create, :edit, :update, :destroy]
+    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+      get 'members' => 'groups#members'
+      resources :group_posts, only: [:index, :show, :edit, :update, :destroy]
+    end
     
-    get 'searchs/search' => 'searchs#search'
+    resources :genres, only: [:index, :show, :create, :edit, :update, :destroy]
 
   end
+
+
 
 
   devise_for :users, controllers: {
@@ -37,6 +35,15 @@ Rails.application.routes.draw do
     get 'homes/about' => 'homes#about', as: 'about'
     get 'homes/beginner'
     get 'homes/already_work'
+    
+    get 'searchs/search' => 'searchs#search'
+    
+     resources :users, only: [:index, :show, :edit, :update] do
+      get 'users/quit' => 'users#quit'
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     
     resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       get 'join' => 'groups#join'
@@ -50,16 +57,10 @@ Rails.application.routes.draw do
       resources :group_post_favorites, only: [:create, :destroy]
     end
     
-    resources :users, only: [:index, :show, :edit, :update] do
-      get 'users/quit' => 'users#quit'
-      resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'followers'
-    end
-    
-    get 'searchs/search' => 'searchs#search'
+    resources :chats, only: [:show, :create]
     
     resources :genres, only: [:index, :show]
+    
   end
 
 

@@ -1,2 +1,42 @@
-<h1>Admin::GroupPosts#show</h1>
-<p>Find me in app/views/admin/group_posts/show.html.erb</p>
+<div class="container">
+  <h2><%= @group_post.title %></h2>
+
+  <div>
+    <h4>投稿者</h4>
+    <%= @group_post.user.name %>
+  </div>
+
+  <div>
+    <h4>作成日時</h4>
+    <%= @group_post.created_at.to_s(:datetime_jp) %>
+    <h4>更新日時</h4>
+    <%= @group_post.updated_at.to_s(:datetime_jp) %>
+  </div>
+
+  <div>
+    <%= @group_post.content %>
+  </div>
+  
+  <div>
+    閲覧数:<%= @group_post.impressionist_count(:filter=>:ip_address) %>
+  </div>
+  
+  <div>
+    ♥<%= @group_post.group_post_favorites.count %> いいね
+  </div>
+  
+  <div>
+    <% @group_post_comments.each do |group_post_comment| %>
+      <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
+      <%= group_post_comment.user.name %>
+      <%= group_post_comment.comment %>
+      <%= link_to "削除", group_post_group_post_comment_path(@group_post.id, group_post_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
+    <% end %>
+  </div>
+  
+  <div>
+    <%= link_to "編集する", edit_admin_group_group_post_path(@group_post.group, @group_post) %>
+    <%= link_to "グループトップへ", admin_group_path(@group) %>
+  </div>
+
+</div>

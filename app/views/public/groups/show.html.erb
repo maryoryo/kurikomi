@@ -15,7 +15,7 @@
   <div>
     <% if @group.owner_id == current_user.id %>
       <%= link_to "グループを編集する", edit_group_path(@group), class: "btn btn-sm btn-success" %>
-      <%= link_to "グループを削除する", group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+      <%= link_to "グループを削除する", group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-sm btn-danger" %>
     <% elsif @group.users.include?(current_user) %>
       <%= link_to "グループから脱退", group_unjoin_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
     <% else %>
@@ -42,7 +42,7 @@
             <td><%= group_post.title %></td>
             <td><%= group_post.content %></td>
             <td><%= group_post.user.name %></td>
-            <!--<td>閲覧数:<%#= @group.group_posts.impressionist_count %></td>-->
+            <td>閲覧数:<%= group_post.impressionist_count(:filter=>:ip_address) %></td>
             <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
           </tr>
         <% end %>

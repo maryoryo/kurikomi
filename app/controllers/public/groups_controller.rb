@@ -9,8 +9,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @group_posts = @group.group_posts.all
-    # impressionist(@group.group_posts, nil, unique: [:session_hash])
+    @group_posts = @group.group_posts
   end
 
   def join
@@ -33,7 +32,6 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     @group.users << current_user
-
     if @group.save
       redirect_to group_path(@group)
     else
@@ -60,7 +58,8 @@ class Public::GroupsController < ApplicationController
     flash[:notice] = "グループ削除しました。"
     redirect_to groups_path
   end
-
+  
+  #グループに紐づいたメンバーの一覧
   def members
     @group = Group.find(params[:group_id])
     @group_members = @group.users
@@ -75,7 +74,7 @@ class Public::GroupsController < ApplicationController
 
   def ensure_correct_user
     @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id || current_admin
+    unless @group.owner_id == current_user.id
       redirect_to groups_path
     end
   end

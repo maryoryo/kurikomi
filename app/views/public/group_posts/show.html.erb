@@ -18,7 +18,7 @@
   </div>
   
   <div>
-    閲覧数:<%= @group_post.impressionist_count %>
+    閲覧数:<%= @group_post.impressionist_count(:filter=>:ip_address) %>
   </div>
   
   <div>
@@ -42,7 +42,9 @@
       <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
       <%= group_post_comment.user.name %>
       <%= group_post_comment.comment %>
-      <%= link_to "削除", group_post_group_post_comment_path(@group_post.id, group_post_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
+      <% if @group_post.user == current_user %>
+        <%= link_to "削除", group_post_group_post_comment_path(@group_post.id, group_post_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
+      <% end %>
     <% end %>
   </div>
   

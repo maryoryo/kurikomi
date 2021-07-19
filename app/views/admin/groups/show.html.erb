@@ -9,17 +9,17 @@
   </div>
   
   <div>
-    <%= link_to "メンバー一覧", group_members_path(@group) %>
+    <%= link_to "メンバー一覧", admin_group_members_path(@group) %>
   </div>
   
   <div>
-    <%= link_to "グループを編集する", edit_group_path(@group), class: "btn btn-sm btn-success" %>
-    <%= link_to "グループを削除する", group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-sm btn-danger" %>
+    <%= link_to "グループを編集する", edit_admin_group_path(@group), class: "btn btn-sm btn-success" %>
+    <%= link_to "グループを削除する", admin_group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-sm btn-danger" %>
   </div>
   
   <div>
     <h4>投稿一覧</h4>
-    <div><%= link_to "投稿する", new_group_group_post_path(@group.id) %></div>
+    <!--<div><%#= link_to "投稿する", new_group_group_post_path(@group.id) %></div>-->
     <table class="table">
       <thead>
         <tr>
@@ -36,14 +36,12 @@
             <td><%= group_post.title %></td>
             <td><%= group_post.content %></td>
             <td><%= group_post.user.name %></td>
-            <td><%#= group_post. %></td>
-            <td><%= link_to "詳細", group_group_post_path(group_post) %></td>
+            <td>閲覧数:<%= group_post.impressionist_count(:filter=>:ip_address) %></td>
+            <td><%= link_to "詳細", admin_group_group_post_path(@group, group_post) %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  
-</div>
   
 </div>
