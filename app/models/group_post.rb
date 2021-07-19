@@ -1,7 +1,6 @@
 class GroupPost < ApplicationRecord
   
   belongs_to :user
-  belongs_to :admin
   belongs_to :group
   
   has_many :group_post_comment, dependent: :destroy

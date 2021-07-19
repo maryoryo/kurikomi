@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_131301) do
+ActiveRecord::Schema.define(version: 2021_07_19_180834) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 2021_07_19_131301) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.integer "impressions_count", default: 0
-    t.integer "admin_id"
     t.index ["group_id"], name: "index_group_posts_on_group_id"
     t.index ["user_id"], name: "index_group_posts_on_user_id"
   end

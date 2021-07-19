@@ -2,7 +2,6 @@ class Public::GroupPostsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  
 
   def show
     @group = Group.find(params[:group_id])
@@ -23,6 +22,7 @@ class Public::GroupPostsController < ApplicationController
     @group_post = GroupPost.new(group_post_params)
     @group_post.group_id = params[:group_id]
     @group_post.user_id = current_user.id
+    
     if @group_post.save
       redirect_to group_group_post_path(@group, @group_post)
     else

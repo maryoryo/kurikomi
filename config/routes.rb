@@ -14,9 +14,13 @@ Rails.application.routes.draw do
     
     resources :users, only: [:index, :show]
     
-    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+    resources :groups, only: [:index, :show, :destroy] do
       get 'members' => 'groups#members'
-      resources :group_posts, only: [:index, :show, :edit, :update, :destroy]
+      resources :group_posts, only: [:index, :show, :destroy]
+    end
+    
+    resources :group_posts do
+      resources :group_post_comments, only: [:destroy]
     end
     
     resources :genres, only: [:index, :show, :create, :edit, :update, :destroy]
