@@ -10,20 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
-//= require popper
-//= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 
-/*global $*/
 
-$(function() {
-   var tabs = $(".tab-item"); // tabのクラスを全て取得し、変数tabsに配列で定義
-  $(".tab-item").on("click", function() { // tabをクリックしたらイベント発火
-    $(".active").removeClass("active"); // activeクラスを消す
-    $(this).addClass("active"); // クリックした箇所にactiveクラスを追加
-  })
-})
+

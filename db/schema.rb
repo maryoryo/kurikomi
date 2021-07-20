@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_180834) do
+ActiveRecord::Schema.define(version: 2021_07_20_165311) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_07_19_180834) do
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "group_hashtags", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_hashtags_on_group_id"
+    t.index ["hashtag_id"], name: "index_group_hashtags_on_hashtag_id"
   end
 
   create_table "group_post_comments", force: :cascade do |t|
@@ -93,6 +102,14 @@ ActiveRecord::Schema.define(version: 2021_07_19_180834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+    t.text "hashbody"
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_hashtags_on_name", unique: true
   end
 
   create_table "impressions", force: :cascade do |t|

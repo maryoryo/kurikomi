@@ -1,0 +1,8 @@
+<% group_post.group_post_comment.each do |group_post_comment| %>
+  <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
+  <%= group_post_comment.user.name %>
+  <%= group_post_comment.comment %>
+  <% if group_post.user == current_user %>
+    <%= link_to "削除", group_post_group_post_comment_path(group_post.id, group_post_comment.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+  <% end %>
+<% end %>

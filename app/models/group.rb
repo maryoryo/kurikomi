@@ -2,8 +2,13 @@ class Group < ApplicationRecord
   
   has_many :group_users, dependent: :destroy
   has_many :users, through: :group_users
+  
   has_many :admins, through: :group_admins
+  
   has_many :group_posts, dependent: :destroy
+  
+  has_many :group_hashtags
+  has_many :hashtags, through: :group_hashtags
   
   validates :name, presence: true, length: { maximum: 25 }
   validates :introduction, presence: true
@@ -17,6 +22,28 @@ class Group < ApplicationRecord
       User.where('group LIKE ?', '%' + content)
     else
       User.where('group LIKE ?', '%' + content + '%')
+    end
+  end
+  
+  
+  after_create do
+    group = Group.find_by(id: id)
+    # hashbodyに打ち込まれたハッシュタグを検出
+    hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags.uniq.map do |hashtag|
+      # ハッシュタグは先頭の#を外した上で保存
+      tag = Hashtag.find_or_create_by(name: hashtag.downcase.delete('#'))
+      group.hashtags << tag
+    end
+  end
+  #更新アクション
+  before_update do
+    group = Group.find_by(id: id)
+    group.hashtags.clear
+    hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(name: hashtag.downcase.delete('#'))
+      group.hashtags << tag
     end
   end
   

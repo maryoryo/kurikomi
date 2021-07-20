@@ -64,12 +64,18 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group_members = @group.users
   end
+  
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find_by(hashname: params[:name])
+    @groups = @tag.groups
+  end
 
 
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :group_image, :genre)
+    params.require(:group).permit(:name, :introduction, :group_image, :genre, :hashbody, hashtag_ids: [])
   end
 
   def ensure_correct_user

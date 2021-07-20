@@ -21,35 +21,17 @@
     閲覧数:<%= @group_post.impressionist_count(:filter=>:ip_address) %>
   </div>
   
-  <div>
-    <% if @group_post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to group_post_group_post_favorite_path(@group_post), method: :delete do %>
-        ♥<%= @group_post.group_post_favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to group_post_group_post_favorites_path(@group_post), method: :post do %>
-        ♡<%= @group_post.group_post_favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+  <div id="favorite">
+    <!--ユーザー側のお気に入り機能の非同期通信-->
+    <%= render 'public/group_post_favorites/group_post_favorites', group_post: @group_post %>
+  </div>
+  
+  <div class="comment">
+    <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
   </div>
   
   <div>
-    <% @group_post_comments.each do |group_post_comment| %>
-      <%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
-      <%= group_post_comment.user.name %>
-      <%= group_post_comment.comment %>
-      <% if @group_post.user == current_user %>
-        <%= link_to "削除", group_post_group_post_comment_path(@group_post.id, group_post_comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
-      <% end %>
-    <% end %>
-  </div>
-  
-  <div>
-    <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), local: true do |f| %>
+    <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
       <%=f.label :コメント %>
       <%=f.text_field :comment %>
       <%=f.submit "送信する",class:"btn btn-success" %>

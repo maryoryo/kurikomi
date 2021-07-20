@@ -20,6 +20,11 @@
     </div>
     
     <div class="field">
+      <%= f.label :ハッシュタグ %>
+      <%= f.text_area :hashbody, size:"55x3" %>
+    </div>
+    
+    <div class="field">
       <%= f.label :ジャンル %>
       <%= f.collection_select(:genre_id, Genre.all, :id, :name, {:prompt => "-- 選択してください --"}, {class: "genre_width px-1"}) %>
     </div>
