@@ -7,7 +7,7 @@ class Group < ApplicationRecord
   
   has_many :group_posts, dependent: :destroy
   
-  has_many :group_hashtags
+  has_many :group_hashtags, dependent: :destroy
   has_many :hashtags, through: :group_hashtags
   
   validates :name, presence: true, length: { maximum: 25 }

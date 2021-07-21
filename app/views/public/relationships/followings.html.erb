@@ -6,4 +6,8 @@
   
   <%= render 'public/users/index', users: @users %>
   
+  <div class="pagination">
+    <%= paginate @users %>
+  </div>
+  
 </div>

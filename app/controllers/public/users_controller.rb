@@ -4,12 +4,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(1)
   end
 
   def show
     @user = User.find(params[:id])
-    @groups = @user.groups.all
+    @groups = @user.groups
   end
 
   def edit

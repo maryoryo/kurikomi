@@ -1,6 +1,5 @@
 class Public::SearchsController < ApplicationController
   
-  
   def search
     @model = params[:model]
     @content = params[:content]

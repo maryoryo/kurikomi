@@ -37,6 +37,10 @@
       <%=f.submit "送信する",class:"btn btn-success" %>
     <% end %>
   </div>
+  
+  <div class="pagination">
+    <%= paginate @group_post.group_post_comments %>
+  </div>
 
   <div>
     <% if @group_post.user == current_user %>

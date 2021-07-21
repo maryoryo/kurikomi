@@ -9,7 +9,6 @@
   </div>
   
   <div>
-    <%#= render_with_hashtags(@group.caption) %>
     <%= render_with_hashtags(@group.hashbody) %>
   </div>
   
@@ -53,6 +52,10 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+  
+  <div class="pagination">
+    <%= paginate @group_posts %>
   </div>
   
 </div>

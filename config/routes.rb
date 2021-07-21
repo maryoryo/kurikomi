@@ -55,7 +55,7 @@ Rails.application.routes.draw do
       get 'join' => 'groups#join'
       delete 'unjoin' => 'groups#unjoin'
       get 'members' => 'groups#members'
-      resources :group_posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+      resources :group_posts, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     
     resources :group_posts do

@@ -4,12 +4,12 @@ class Public::GroupsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(10)
   end
 
   def show
     @group = Group.find(params[:id])
-    @group_posts = @group.group_posts
+    @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
 
   def join
@@ -62,13 +62,13 @@ class Public::GroupsController < ApplicationController
   #グループに紐づいたメンバーの一覧
   def members
     @group = Group.find(params[:group_id])
-    @group_members = @group.users
+    @group_members = @group.users.page(params[:page]).per(10)
   end
   
   def hashtag
     @user = current_user
-    @tag = Hashtag.find_by(hashname: params[:name])
-    @groups = @tag.groups
+    @tag = Hashtag.find_by(name: params[:name])
+    @groups = @tag.groups.page(params[:page]).per(10)
   end
 
 
