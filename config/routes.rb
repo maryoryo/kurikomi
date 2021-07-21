@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     
     get '/groups/hashtag/:name' => 'groups#hashtag'
     
+    get 'notifications/index' => 'notifications#index'
+    
      resources :users, only: [:index, :show, :edit, :update] do
       get 'users/quit' => 'users#quit'
       resource :relationships, only: [:create, :destroy]

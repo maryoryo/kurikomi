@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_165311) do
+ActiveRecord::Schema.define(version: 2021_07_21_180243) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -136,6 +136,25 @@ ActiveRecord::Schema.define(version: 2021_07_20_165311) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "group_post_id"
+    t.integer "group_post_comment_id"
+    t.integer "room_id"
+    t.integer "chat_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_notifications_on_chat_id"
+    t.index ["group_post_comment_id"], name: "index_notifications_on_group_post_comment_id"
+    t.index ["group_post_id"], name: "index_notifications_on_group_post_id"
+    t.index ["room_id"], name: "index_notifications_on_room_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "relationships", force: :cascade do |t|

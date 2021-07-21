@@ -7,6 +7,7 @@ class Public::GroupPostCommentsController < ApplicationController
     @group_post_comment.group_post_id = @group_post.id
     @group_post_comment.user_id = current_user.id
     @group_post_comment.save
+    @group_post.create_notification_comment(current_user, @group_post_comment.id)
     # redirect_to group_group_post_path(group_id: group_post.group_id, id: group_post.id)
   end
 
