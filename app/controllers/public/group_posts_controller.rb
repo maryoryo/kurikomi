@@ -7,7 +7,9 @@ class Public::GroupPostsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group_post = GroupPost.find(params[:id])
     @group_post_comment = GroupPostComment.new
+    @group_post_comments = @group_post.group_post_comment.page(params[:page]).per(10)
     @group_post_favorite = @group_post.group_post_favorites.new
+    @group_post_favorite_id = @group_post.group_post_favorites.find_by(user_id: current_user.id)
     impressionist(@group_post, nil, unique: [:ip_address])
   end
 
@@ -21,7 +23,7 @@ class Public::GroupPostsController < ApplicationController
     @group_post = GroupPost.new(group_post_params)
     @group_post.group_id = params[:group_id]
     @group_post.user_id = current_user.id
-    
+
     if @group_post.save
       redirect_to group_group_post_path(@group, @group_post)
     else
@@ -29,12 +31,12 @@ class Public::GroupPostsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @group = Group.find(params[:group_id])
-    @group_post = GroupPost.find(params[:id]) 
+    @group_post = GroupPost.find(params[:id])
   end
-  
+
   def update
     @group_post = GroupPost.find(params[:id])
     @group = Group.find(params[:group_id])
@@ -54,7 +56,7 @@ class Public::GroupPostsController < ApplicationController
   def group_post_params
     params.require(:group_post).permit(:title, :content)
   end
-  
+
   def ensure_correct_user
     @group_post = GroupPost.find_by(params[:id])
     unless @group_post.user_id == current_user.id

@@ -3,11 +3,6 @@
     <h2>コミュニティ一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
   </div>
-  <div class="row my-5">
-    <div class="ml-auto">
-      <%#= link_to "グループを作成する", new_admin_group_path %>
-    </div>
-  </div>
   
   <%= render 'admin/groups/index', groups: @groups %>
   

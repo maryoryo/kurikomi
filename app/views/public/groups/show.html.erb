@@ -36,6 +36,7 @@
           <th>タイトル</th>
           <th>投稿内容</th>
           <th>投稿者</th>
+          <th>コメント数</th>
           <th>Pv数</th>
           <th>詳細</th>
         </tr>
@@ -46,6 +47,7 @@
             <td><%= group_post.title %></td>
             <td><%= group_post.content %></td>
             <td><%= group_post.user.name %></td>
+            <td><%= group_post.group_post_comment.count %></td>
             <td>閲覧数:<%= group_post.impressionist_count(:filter=>:ip_address) %></td>
             <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
           </tr>

@@ -46,7 +46,7 @@ class GroupPost < ApplicationRecord
   #コメント機能の通知
   def create_notification_comment(current_user, group_post_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
-    temp_ids = Comment.select(:user_id).where(group_post_id: id).where.not(user_id: current_user.id).distinct
+    temp_ids = GroupPostComment.select(:user_id).where(group_post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
       save_notification_comment(current_user, group_post_comment_id, temp_id['user_id'])
     end
@@ -58,7 +58,7 @@ class GroupPost < ApplicationRecord
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
       group_post_id: id,
-      group_post_comment_id: comment_id,
+      group_post_comment_id: group_post_comment_id,
       visited_id: visited_id,
       action: 'comment'
     )
@@ -70,17 +70,17 @@ class GroupPost < ApplicationRecord
   end
   
   
-  #フォローフォロワー機能の通知
-  def create_notification_follow(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        visited_id: id,
-        action: 'follow'
-      )
-      notification.save if notification.valid?
-    end
-  end
+  # #フォローフォロワー機能の通知
+  # def create_notification_follow(current_user)
+  #   temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+  #   if temp.blank?
+  #     notification = current_user.active_notifications.new(
+  #       visited_id: id,
+  #       action: 'follow'
+  #     )
+  #     notification.save if notification.valid?
+  #   end
+  # end
   
   
   

@@ -1,2 +1,23 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
+
+<div class="container">
+
+  <div> 
+    <%= link_to user_path(visitor) do %>
+      <%= visitor.name %>さんが
+    <% end %>
+   
+    <% case notification.action %>
+    <% when 'follow' then %>
+      <p>あなたをフォローしました</p>
+    <% when 'favorite' then %>
+      <%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
+      <p>にいいねしました</p>
+    <% when 'comment' then %>
+      <%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
+      <p>にいいねしました</p>
+    <% end %>
+  </div>
+
+</div>

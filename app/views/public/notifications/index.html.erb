@@ -1,6 +1,6 @@
 <% notification = @notifications.where.not(visitor_id: current_user.id) %>
-<% if notifications.exists? %>
-  <%= render notifications %>
+<% if notification.exists? %>
+  <%= render notification, group_post: @group_post, group: @group %>
 <% else %>
   <p>通知はありません</p>
 <% end %>

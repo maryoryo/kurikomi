@@ -25,11 +25,11 @@
       </tr>
     </tbody>
   </table>
-  
+
   <div id="relationship">
     <%= render 'public/relationships/relationships', user: @user %>
   </div>
-  
+
   <div>
     <%= link_to user_followings_path(@user) do %>
       フォロー数:<%= @user.followings.count %>
@@ -38,7 +38,7 @@
       フォロワー数:<%= @user.followers.count %>
     <% end %>
   </div>
-  
+
   <div>
     <% if current_user != @user %>
       <%= link_to "チャットを始める", chat_path(@user) %>

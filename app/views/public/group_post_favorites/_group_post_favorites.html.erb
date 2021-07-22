@@ -1,9 +1,9 @@
 <% if group_post.favorited_by?(current_user) %>
-  <%= link_to(group_post_group_post_favorite_path(group_post_id: group_post.id, id: @group_post_favorite.id), method: :delete, remote: true) do %>
+  <%= link_to group_post_group_post_favorite_path(group_post, group_post_favorite_id), method: :delete, remote: true do %>
     ♥<%= group_post.group_post_favorites.count %> いいね
   <% end %>
 <% else %>
-  <%= link_to(group_post_group_post_favorites_path(group_post), method: :post, remote: true) do %>
+  <%= link_to group_post_group_post_favorites_path(group_post), method: :post, remote: true do %>
     ♡<%= group_post.group_post_favorites.count %> いいね
   <% end %>
 <% end %>

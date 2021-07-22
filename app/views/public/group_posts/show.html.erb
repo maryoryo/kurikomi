@@ -23,7 +23,7 @@
   
   <div id="favorite">
     <!--ユーザー側のお気に入り機能の非同期通信-->
-    <%= render 'public/group_post_favorites/group_post_favorites', group_post: @group_post %>
+    <%= render 'public/group_post_favorites/group_post_favorites', group_post: @group_post, group_post_favorite_id: @group_post_favorite_id %>
   </div>
   
   <div class="comment">
@@ -39,7 +39,7 @@
   </div>
   
   <div class="pagination">
-    <%= paginate @group_post.group_post_comments %>
+    <%= paginate @group_post_comments %>
   </div>
 
   <div>
