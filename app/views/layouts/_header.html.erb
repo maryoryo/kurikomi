@@ -15,11 +15,16 @@
           <li class="nav-item"><%= link_to "コミュニティ一覧", admin_groups_path, class:"text-white" %></li>
           <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class:"text-white" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-white" %></li>
-        </u
+        </ul>
       <% elsif user_signed_in? %>
         <ul class="nav nav-tabs justify-content-center nav-justified pt-4 pb-2">
           <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class:"text-white" %></li>
-          <li class="nav-item"><%= link_to "通知", notifications_index_path, class:"text-white" %></li>
+          <li class="nav-item">
+            <%= link_to "通知", notifications_index_path, class:"text-white" %>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle notification-circle" style="color: gold;"></i>
+            <% end %>
+          </li>
           <li class="nav-item"><%= link_to "会員一覧", users_path, class:"text-white" %></li>
           <li class="nav-item"><%= link_to "コミュニティ一覧", groups_path, class:"text-white" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-white" %></li>

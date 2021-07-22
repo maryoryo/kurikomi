@@ -1,53 +1,56 @@
-<div class="container">
+<div class="container col-6">
 
-  <h2><%= @user.name %>さんのページ</h2>
-  <div class="row">
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
-    <div><%= @user.name %></div>
+  <!--<h2><%#= @user.name %>さんのページ</h2>-->
+  <div class="row mt-4">
+    <div><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
+    <div class="d-flex align-items-center ml-3">チャンネル名：<%= @user.name %></div>
   </div>
-  <table class="tabke">
-    <tbody>
-      <tr>
-        <td>概要</td>
-        <td><%= @user.introduction %></td>
-      </tr>
-      <tr>
-        <td>オススメ動画</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>参加コミュニティ</td>
-        <td>
-          <% @groups.each do |group| %>
-            <%= group.name %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div id="relationship">
-    <%= render 'public/relationships/relationships', user: @user %>
-  </div>
-
-  <div>
+  
+  <div class="row mt-2">
+    <div>
     <%= link_to user_followings_path(@user) do %>
       フォロー数:<%= @user.followings.count %>
     <% end %>
+    </div>
+    <div class="ml-3">
     <%= link_to user_followers_path(@user) do %>
       フォロワー数:<%= @user.followers.count %>
     <% end %>
+    </div>
   </div>
-
-  <div>
+  
+  <div class="mt-2">
     <% if current_user != @user %>
-      <%= link_to "チャットを始める", chat_path(@user) %>
+      <%= link_to " チャットを始める", chat_path(@user), class:"btn btn-info fa fa-comments" %>
+    <% else %>
+      <%= link_to " プロフィール編集", edit_user_path(@user), class:"btn btn-secondary fas fa-user-cog" %>
     <% end %>
   </div>
+  
+  <div id="relationship" class="mt-2">
+    <%= render 'public/relationships/relationships', user: @user %>
+  </div>
+  
+  <div class="mt-4">
+    <h4>概要</h4>
+    <div class="card border-dark">
+      <%= @user.introduction %>
+    </div>
+  </div>
+  
+  <div class="mt-4">
+    <h4>参加コミュニティ</h4>
+    <div class="card border-dark">
+      <% @groups.each do |group| %>
+        <%= link_to group_path(group) do %>
+          <%= group.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
-  <div>
+  <div class="row justify-content-center my-4">
     <% if @user.id == current_user.id %>
-      <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-success" %>
       <%= link_to "退会する",user_users_quit_path(@user), class:"btn btn-danger" %>
     <% end %>
   </div>

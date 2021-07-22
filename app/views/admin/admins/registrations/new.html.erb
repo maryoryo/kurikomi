@@ -1,7 +1,9 @@
 <div class="container my-5">
-  <h2>管理者側登録画面</h2>
-
-  <div class="pl-4 mt-3">
+  
+  <div class="row justify-content-center">
+    
+    <div class="card border-dark py-4 px-5">
+    <h2>管理者側登録画面</h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "admin/admins/shared/error_messages", resource: resource %>
 
@@ -28,8 +30,9 @@
       </div>
     <% end %>
 
-    <div class="mt-3">
-      <%= render "admin/admins/shared/links" %>
+      <div class="mt-3">
+        <%= render "admin/admins/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

@@ -3,20 +3,20 @@
 
 <div class="container">
 
-  <div> 
+  <div class="row justify-content-center my-4"> 
     <%= link_to user_path(visitor) do %>
-      <%= visitor.name %>さんが
+      <%= visitor.name %>さん
     <% end %>
    
     <% case notification.action %>
     <% when 'follow' then %>
-      <p>あなたをフォローしました</p>
+      <p>があなたをフォローしました</p>
     <% when 'favorite' then %>
-      <%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
+      が<%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
       <p>にいいねしました</p>
     <% when 'comment' then %>
-      <%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
-      <p>にいいねしました</p>
+      が<%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
+      <p>にコメントしました</p>
     <% end %>
   </div>
 

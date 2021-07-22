@@ -7,7 +7,6 @@ class Public::NotificationsController < ApplicationController
     end
     @notification = Notification.find_by(params[:visited_id])
     @group_post = @notification.group_post
-    # @group = Group.find(group_id: @group_post.group.id)
     @group = @group_post.group
   end
 end
