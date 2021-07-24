@@ -1,33 +1,42 @@
-<div class="container">
-  <h2>コミュニティ編集</h2>
+<div class="container my-5 col-6">
   
-  <div>
-    <%= form_with model: @group, local:true do |f| %>
+  <div class="row justify-content-center">
     
-    <div class="field">
-      <%= f.label :グループ画像%>
-      <%= f.attachment_field :group_image %>
+    <div class="card border-dark py-4 px-5">
+    <h2>コミュニティ編集</h2>
+      <div>
+        <%= form_with model: @group, local:true do |f| %>
+        
+        <div class="field mt-3">
+          <%= f.label :グループ画像%><br/>
+          <%= f.attachment_field :group_image, class:"form-control-file" %>
+        </div>
+        
+        <div class="field mt-3">
+          <%= f.label :グループ名%><br/>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+        
+        <div class="field mt-3">
+          <%= f.label :概要 %><br/>
+          <%= f.text_area :introduction, class:"form-control" %>
+        </div>
+        
+        <div class="field mt-3">
+          <%= f.label :ハッシュタグ %><br />
+          <%= f.text_area :hashbody, size:"55x3", class:"form-control" %>
+        </div>
+        
+        <div class="field mt-3">
+          <%= f.label :ジャンル %><br/>
+          <%= f.collection_select(:genre_id, Genre.all, :id, :name, {:prompt => "-- 選択してください --"}, {class: "genre_width px-1 form-control"}) %>
+        </div>
+        
+        <div class="actions mt-3">
+          <%= f.submit "保存する" %>
+        </div>
+        
+        <% end %>
+      </div>
     </div>
-    
-    <div class="field">
-      <%= f.label :グループ名%>
-      <%= f.text_field :name %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :概要 %>
-      <%= f.text_area :introduction %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :ジャンル %>
-      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {:prompt => "-- 選択してください --"}, {class: "genre_width px-1"}) %>
-    </div>
-    
-    <div class="actions">
-      <%= f.submit "保存する" %>
-    </div>
-    
-    <% end %>
-  </div>
 </div>

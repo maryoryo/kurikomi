@@ -1,6 +1,4 @@
 <div class="container col-6">
-
-  <!--<h2><%#= @user.name %>さんのページ</h2>-->
   <div class="row mt-4">
     <div><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
     <div class="d-flex align-items-center ml-3">チャンネル名：<%= @user.name %></div>
@@ -23,7 +21,7 @@
     <% if current_user != @user %>
       <%= link_to " チャットを始める", chat_path(@user), class:"btn btn-info fa fa-comments" %>
     <% else %>
-      <%= link_to " プロフィール編集", edit_user_path(@user), class:"btn btn-secondary fas fa-user-cog" %>
+      <%= link_to " プロフィール編集", edit_user_path(@user), class:"btn btn-lg btn-secondary fas fa-user-cog" %>
     <% end %>
   </div>
   
@@ -34,7 +32,7 @@
   <div class="mt-4">
     <h4>概要</h4>
     <div class="card border-dark">
-      <%= @user.introduction %>
+      <%= safe_join(@user.introduction.split("\n"),tag(:br)) %>
     </div>
   </div>
   
@@ -51,7 +49,7 @@
 
   <div class="row justify-content-center my-4">
     <% if @user.id == current_user.id %>
-      <%= link_to "退会する",user_users_quit_path(@user), class:"btn btn-danger" %>
+      <%= link_to "退会する",user_users_quit_path(@user), class:"btn btn-danger col-5" %>
     <% end %>
   </div>
 

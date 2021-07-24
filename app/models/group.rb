@@ -13,15 +13,15 @@ class Group < ApplicationRecord
   validates :name, presence: true, length: { maximum: 25 }
   validates :introduction, presence: true
   
-  def self.search_for(content,method)
+  def self.search_for(content, method)
     if method == 'perfect'
-      User.where(group: content)
+      User.where(name: content)
     elsif method == 'forword'
-      User.where('group LIKe ?', content + '%')
+      User.where('name LIKE ?', content + '%')
     elsif method == 'backword'
-      User.where('group LIKE ?', '%' + content)
+      User.where('name LIKE ?', '%' + content)
     else
-      User.where('group LIKE ?', '%' + content + '%')
+      User.where('name LIKE ?', '%' + content + '%')
     end
   end
   

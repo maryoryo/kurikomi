@@ -6,7 +6,7 @@ class Public::SearchsController < ApplicationController
     @method = params[:method]
     if @model == "user"
       @records = User.search_for(@content, @method)
-    elsif
+    elsif @model == "group"
       @records = Group.search_for(@content, @method)
     else
       @records = Genre.search_for(@content, @method)

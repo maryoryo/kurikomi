@@ -34,11 +34,11 @@ class User < ApplicationRecord
 
   attachment :profile_image, destroy: false
 
-  def self.search_for(content,method)
+  def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)
     elsif method == 'forword'
-      User.where('name LIKe ?', content + '%')
+      User.where('name LIKE ?', content + '%')
     elsif method == 'backword'
       User.where('name LIKE ?', '%' + content)
     else

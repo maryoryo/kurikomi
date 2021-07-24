@@ -1,53 +1,57 @@
-<div class="container">
-  <h2><%= @group_post.title %></h2>
-
-  <div>
-    <h4>投稿者</h4>
-    <%= @group_post.user.name %>
+<div class="container col-8">
+  <div class="row mt-4">
+    <h2>タイトル：<%= @group_post.title %></h2>
   </div>
 
-  <div>
-    <h4>作成日時</h4>
-    <%= @group_post.created_at.to_s(:datetime_jp) %>
-    <h4>更新日時</h4>
-    <%= @group_post.updated_at.to_s(:datetime_jp) %>
+  <div class="mt-2">
+    <h4>投稿者：<%= @group_post.user.name %></h4>
+  </div>
+  
+  <div class="mt-4">
+    <h4>投稿内容</h4>
+    <div class="card border-dark">
+      <%= safe_join(@group_post.content.split("\n"),tag(:br)) %>
+    </div>
   </div>
 
-  <div>
-    <%= @group_post.content %>
+  <div class="row">
+    <div id="favorite" class="mt-2 ml-3">
+      <!--ユーザー側のお気に入り機能の非同期通信-->
+      <%= render 'public/group_post_favorites/group_post_favorites', group_post: @group_post, group_post_favorite_id: @group_post_favorite_id %>
+    </div>
+    <div class="ml-auto">
+      <p>
+        作成日時：<%= @group_post.created_at.to_s(:datetime_jp) %><br/>
+        更新日時：<%= @group_post.updated_at.to_s(:datetime_jp) %><br/>
+        閲覧数：<%= @group_post.impressionist_count(:filter=>:ip_address) %>
+      <p>
+    </div>
   </div>
   
-  <div>
-    閲覧数:<%= @group_post.impressionist_count(:filter=>:ip_address) %>
-  </div>
-  
-  <div id="favorite">
-    <!--ユーザー側のお気に入り機能の非同期通信-->
-    <%= render 'public/group_post_favorites/group_post_favorites', group_post: @group_post, group_post_favorite_id: @group_post_favorite_id %>
-  </div>
-  
-  <div class="comment">
-    <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
-  </div>
-  
-  <div>
-    <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
-      <%=f.label :コメント %>
-      <%=f.text_field :comment %>
-      <%=f.submit "送信する",class:"btn btn-success" %>
-    <% end %>
+  <div class="mt-5">
+    <h4>コメント一覧</h4>
+    <div class="comment">
+      <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
+    </div>
+    <div class="row justify-content-center">
+      <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
+        <%=f.label :コメント %>
+        <%=f.text_field :comment %>
+        <%=f.submit "送信する",class:"btn btn-success" %>
+      <% end %>
+    </div>
   </div>
   
   <div class="pagination">
     <%= paginate @group_post_comments %>
   </div>
 
-  <div>
+  <div class="row justify-content-center my-5">
     <% if @group_post.user == current_user %>
-      <%= link_to "編集する", edit_group_group_post_path(@group_post.group, @group_post) %>
-      <%= link_to "削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？" %>
+      <%= link_to "投稿を編集する", edit_group_group_post_path(@group_post.group, @group_post), class:"btn btn-secondary mr-5" %>
+      <%= link_to "投稿を削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger" %>
     <% end %>
-    <%= link_to "グループトップへ", group_path(@group) %>
+    <%= link_to "グループトップへ", group_path(@group), class:"btn btn-primary ml-5" %>
   </div>
 
 </div>
