@@ -6,4 +6,8 @@
   
   <%= render 'admin/groups/index', groups: @groups %>
   
+  <div class="pagination">
+    <%= paginate @groups %>
+  </div>
+  
 </div>

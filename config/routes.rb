@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     
     get 'searchs/search' => 'searchs#search'
     
+    get '/groups/hashtag/:name' => 'groups#hashtag'
+    
     resources :users, only: [:index, :show]
     
     resources :groups, only: [:index, :show, :destroy] do
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
       resources :group_post_comments, only: [:destroy]
     end
     
-    resources :genres, only: [:index, :show, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
 
   end
 

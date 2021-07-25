@@ -10,13 +10,13 @@
    
     <% case notification.action %>
     <% when 'follow' then %>
-      <p>があなたをフォローしました</p>
+      <p>があなたをフォローしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></p>
     <% when 'favorite' then %>
       が<%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
-      <p>にいいねしました</p>
+      <p>にいいねしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></p>
     <% when 'comment' then %>
       が<%= link_to "あなたの投稿", group_group_post_path(group.id, group_post) %>
-      <p>にコメントしました</p>
+      <p>にコメントしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></p>
     <% end %>
   </div>
 

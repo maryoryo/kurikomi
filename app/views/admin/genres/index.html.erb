@@ -1,11 +1,11 @@
-<div class="container">
-  <div class="row my-4">
+<div class="container col-8">
+  <div class="row my-5">
     <h2>ジャンル一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
   </div>
   <div class="row my-3">
     <div class="ml-auto">
-      <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+      <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
         <div class="form-field">
           <%= f.label :ジャンル追加 %>
           <%= f.text_field :name, :placeholder => "ジャンル名" %>
@@ -14,7 +14,11 @@
       <% end %>
     </div>
   </div>
-  
+
   <%= render 'admin/genres/index', genres: @genres %>
-  
+
+  <div class="pagination">
+    <%= paginate @genres %>
+  </div>
+
 </div>

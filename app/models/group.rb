@@ -10,18 +10,25 @@ class Group < ApplicationRecord
   has_many :group_hashtags, dependent: :destroy
   has_many :hashtags, through: :group_hashtags
   
+  #.ownerを使うための記述
+  belongs_to :owner, class_name: 'User'
+  
+  belongs_to :genre
+  
+  
   validates :name, presence: true, length: { maximum: 25 }
   validates :introduction, presence: true
   
+  
   def self.search_for(content, method)
     if method == 'perfect'
-      User.where(name: content)
+      Group.where(name: content)
     elsif method == 'forword'
-      User.where('name LIKE ?', content + '%')
+      Group.where('name LIKE ?', content + '%')
     elsif method == 'backword'
-      User.where('name LIKE ?', '%' + content)
+      Group.where('name LIKE ?', '%' + content)
     else
-      User.where('name LIKE ?', '%' + content + '%')
+      Group.where('name LIKE ?', '%' + content + '%')
     end
   end
   

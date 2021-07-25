@@ -3,12 +3,15 @@ class Admin::GroupsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @groups = Group.all 
+    @groups = Group.all.page(params[:page]).per(10)
   end
 
   def show
     @group = Group.find(params[:id])
-    @group_posts = @group.group_posts
+    @hashname = @group.hashbody
+    @tag = @group.hashtags.find_by(params[:name])
+    
+    @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
   
   def edit
@@ -34,7 +37,13 @@ class Admin::GroupsController < ApplicationController
   #グループに紐づいたメンバーの一覧
   def members
     @group = Group.find(params[:group_id])
-    @group_members = @group.users
+    @group_members = @group.users.page(params[:page]).per(10)
+  end
+  
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find(params[:name])
+    @groups = @tag.groups.page(params[:page]).per(10)
   end
 
 

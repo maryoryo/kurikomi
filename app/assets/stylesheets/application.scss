@@ -83,6 +83,11 @@ header {
   // 背景色の透過
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
+  .about-contents {
+    width: 800px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
 }
 
 // 背景画像の設定
@@ -95,6 +100,11 @@ header {
   // 背景色の透過
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
+  .beginner-contents {
+    width: 800px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
 }
 
 // 背景画像の設定
@@ -107,6 +117,11 @@ header {
   // 背景色の透過
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
+  .already_work-contents {
+    width: 800px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
 }
 
 footer {
@@ -115,6 +130,10 @@ footer {
 
 .pagination {
   justify-content: center;
+}
+
+table {
+  table-layout: fixed;
 }
 
 table th {

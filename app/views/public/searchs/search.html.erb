@@ -1,6 +1,6 @@
-<div class="container my-5 col-8">
-  <div class="row">
-    
+<div class="container">
+  <div class="row my-5">
+    <h4><%= @content %>の検索結果</h4>
     <% if @model == "user" %>
       <%= render 'public/users/index', users: @records %>
     <% elsif @model == "group" %>
@@ -11,4 +11,9 @@
       <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
     <% end %>
   </div>
+  
+  <div class="pagination">
+    <%= paginate @records %>
+  </div>
+  
 </div>

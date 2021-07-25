@@ -1,0 +1,14 @@
+<table class="table">
+  <tbody>
+    <% group_post.group_post_comment.each do |group_post_comment| %>
+    <tr>
+      <td><%= attachment_image_tag group_post_comment.user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60", class:"rounded-circle" %></td>
+      <td><%= group_post_comment.user.name %></td>
+      <td><%= group_post_comment.comment %></td>
+      <td>
+        <%= link_to "削除", admin_group_post_group_post_comment_path(group_post.id, group_post_comment.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

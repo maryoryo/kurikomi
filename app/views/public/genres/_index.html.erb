@@ -3,7 +3,7 @@
     <tr>
       <th>ジャンル名</th>
       <th>付随コミュニティ数</th>
-      <th>詳細</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -11,7 +11,7 @@
     <tr>
       <td><%= genre.name %></td>
       <td><%= genre.groups.count %></td>
-      <td><%= link_to "詳細", admin_genre_path(genre) %></td>
+      <td><%= link_to "詳細", genre_path(genre) %></td>
     </tr>
     <% end %>
   </tbody>
