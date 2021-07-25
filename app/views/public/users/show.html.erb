@@ -25,6 +25,7 @@
     <% end %>
   </div>
   
+  <!--フォローフォロワー機能の非同期通信-->
   <div id="relationship" class="mt-2">
     <%= render 'public/relationships/relationships', user: @user %>
   </div>
@@ -33,7 +34,7 @@
     <h4>概要</h4>
     <div class="card border-dark">
       <% if @user.introduction != nil %>
-        <%= safe_join(@user.introduction.split("\n"), tag(:br)) %>
+        <%= simple_format(Rinku.auto_link(@user.introduction, :all, 'target="_blank"').html_safe) %>
       <% else %>
         <%= @user.introduction %>
       <% end %>
@@ -58,4 +59,3 @@
   </div>
 
 </div>
-

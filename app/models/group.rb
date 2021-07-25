@@ -10,16 +10,21 @@ class Group < ApplicationRecord
   has_many :group_hashtags, dependent: :destroy
   has_many :hashtags, through: :group_hashtags
   
-  #.ownerを使うための記述
+  #genreで.ownerを使うための記述
   belongs_to :owner, class_name: 'User'
-  
   belongs_to :genre
   
   
   validates :name, presence: true, length: { maximum: 25 }
   validates :introduction, presence: true
+  validates :genre_id, presence: true
   
   
+  #画像ファイルの付与
+  attachment :group_image, destroy: false
+  
+  
+  #グループを検索する時のメソッドを定義
   def self.search_for(content, method)
     if method == 'perfect'
       Group.where(name: content)
@@ -33,6 +38,7 @@ class Group < ApplicationRecord
   end
   
   
+  #ハッシュタグ機能を作成時のアクションを定義
   after_create do
     group = Group.find_by(id: id)
     # hashbodyに打ち込まれたハッシュタグを検出
@@ -43,7 +49,7 @@ class Group < ApplicationRecord
       group.hashtags << tag
     end
   end
-  #更新アクション
+  #更新時アクション
   before_update do
     group = Group.find_by(id: id)
     group.hashtags.clear
@@ -54,7 +60,6 @@ class Group < ApplicationRecord
     end
   end
   
-  attachment :group_image, destroy: false
   
   #   is_impressionable
 # ➡︎ Tweetモデルでimpressionistを使用できるようにします。

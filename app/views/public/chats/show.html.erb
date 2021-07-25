@@ -34,6 +34,9 @@
           </tbody>
         </div>
       </table>
+      <div id="chat_message-error">
+        <%= render 'layouts/errors', obj: @chat %>
+      </div>
       <%= form_with model: @chat, method: :post, remote: true do |f| %>
         <%= f.text_field :message %>
         <%= f.hidden_field :room_id, value: @chat.room_id %>

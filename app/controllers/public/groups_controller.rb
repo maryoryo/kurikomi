@@ -12,12 +12,14 @@ class Public::GroupsController < ApplicationController
     @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
 
+  #グループ参加のアクション
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
     redirect_to  group_path(@group)
   end
 
+  #グループから脱退するアクション
   def unjoin
     @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
@@ -33,7 +35,7 @@ class Public::GroupsController < ApplicationController
     @group.owner_id = current_user.id
     @group.users << current_user
     if @group.save
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), notice: "作成に成功しました"
     else
       render 'new'
     end
@@ -46,17 +48,16 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), notice: "編集に成功しました"
     else
       render 'edit'
     end
   end
 
   def destroy
-    @group = Group.find(params[:id])
-    @group.destroy
-    flash[:notice] = "グループ削除しました。"
-    redirect_to groups_path
+    group = Group.find(params[:id])
+    group.destroy
+    redirect_to groups_path, notice: "削除に成功しました"
   end
   
   #グループに紐づいたメンバーの一覧
@@ -65,6 +66,7 @@ class Public::GroupsController < ApplicationController
     @group_members = @group.users.page(params[:page]).per(10)
   end
   
+  #ハッシュタグをクリック時その一覧を表示
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(name: params[:name])

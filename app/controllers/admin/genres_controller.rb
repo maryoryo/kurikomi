@@ -18,7 +18,6 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path, notice: "作成に成功しました"
     else
       @genres = Genre.all.page(params[:page]).per(10)
-      # @genre = Genre.new
       render 'index'
     end
   end
@@ -32,7 +31,7 @@ class Admin::GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to admin_genre_path(@genre), notice: "編集に成功しました"
     else
-      render 'index'
+      render 'edit'
     end
   end
   

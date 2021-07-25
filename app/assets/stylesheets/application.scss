@@ -43,6 +43,11 @@ header {
 //   background-color: red;
 // }
 
+//　エラーメッセージによるレイアウト崩れを修正
+.field_with_errors {
+  display: contents;
+}
+
 // 背景画像の設定
 .top-visual {
   background-image: image-url("main.jpg");

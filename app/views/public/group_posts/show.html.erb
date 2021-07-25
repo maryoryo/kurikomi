@@ -10,7 +10,7 @@
   <div class="mt-4">
     <h4>投稿内容</h4>
     <div class="card border-dark">
-      <%= safe_join(@group_post.content.split("\n"),tag(:br)) %>
+      <%= simple_format(Rinku.auto_link(@group_post.content, :all, 'target="_blank"').html_safe) %>
     </div>
   </div>
 
@@ -31,6 +31,7 @@
   <div class="mt-5">
     <h4>コメント一覧</h4>
     <div class="comment">
+      <!--ユーザー側のコメント機能の非同期通信-->
       <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
     </div>
     <div class="row justify-content-center">

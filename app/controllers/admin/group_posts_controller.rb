@@ -15,7 +15,7 @@ class Admin::GroupPostsController < ApplicationController
     group = Group.find(params[:group_id])
     group_post = GroupPost.find(params[:id])
     group_post.destroy
-    redirect_to admin_group_path(group)
+    redirect_to admin_group_path(group), notice: "削除に成功しました"
   end
 
   private

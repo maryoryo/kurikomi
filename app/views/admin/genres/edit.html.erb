@@ -6,6 +6,7 @@
     <div class="card border-dark py-4 px-5">
     <h2>ジャンル名編集フォーム</h2>
       <div>
+        <%= render 'layouts/errors', obj: @genre %>
         <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local: true do |f| %>
         
         <div class="form-field mt-3">

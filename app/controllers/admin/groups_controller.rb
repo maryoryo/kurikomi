@@ -14,24 +14,10 @@ class Admin::GroupsController < ApplicationController
     @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
   
-  def edit
-    @group = Group.find(params[:id])
-  end
-
-  def update
-    @group = Group.find(params[:id])
-    if @group.update(group_params)
-      redirect_to admin_group_path(@group)
-    else
-      render 'edit'
-    end
-  end
-
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    flash[:notice] = "グループ削除しました。"
-    redirect_to admin_groups_path
+    redirect_to admin_groups_path, notice: "削除に成功しました"
   end
   
   #グループに紐づいたメンバーの一覧
@@ -40,6 +26,7 @@ class Admin::GroupsController < ApplicationController
     @group_members = @group.users.page(params[:page]).per(10)
   end
   
+  #ハッシュタグをクリック時その一覧を表示
   def hashtag
     @user = current_user
     @tag = Hashtag.find(params[:name])

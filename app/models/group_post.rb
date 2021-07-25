@@ -10,6 +10,9 @@ class GroupPost < ApplicationRecord
   
   has_many :notifications, dependent: :destroy
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   def favorited_by?(user)
     group_post_favorites.where(user_id: user.id).exists?
   end
@@ -41,6 +44,7 @@ class GroupPost < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+  
   
   
   #コメント機能の通知

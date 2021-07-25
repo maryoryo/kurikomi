@@ -5,7 +5,8 @@
     <div class="card border-dark py-4 px-5">
     <h2>投稿編集フォーム</h2>
       <div>
-        <%= form_with(model: [@group, @group_post], url: group_group_post_path, method: :PATCH, local: true) do |f| %>
+        <%= render 'layouts/errors', obj: @group_post %>
+        <%= form_with(model: [@group, @group_post], url: group_group_post_path, method: :patch, local: true) do |f| %>
         
         <div class="form-field mt-3">
           <%= f.label :タイトル %><br/>

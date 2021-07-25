@@ -6,10 +6,13 @@ class Public::GroupPostsController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @group_post = GroupPost.find(params[:id])
+    #コメント機能関連
     @group_post_comment = GroupPostComment.new
     @group_post_comments = @group_post.group_post_comment.page(params[:page]).per(10)
+    #お気に入り機能関連
     @group_post_favorite = @group_post.group_post_favorites.new
     @group_post_favorite_id = @group_post.group_post_favorites.find_by(user_id: current_user.id)
+    #PV数の表示（IPアドレスでカウント）
     impressionist(@group_post, nil, unique: [:ip_address])
   end
 
@@ -23,10 +26,10 @@ class Public::GroupPostsController < ApplicationController
     @group_post = GroupPost.new(group_post_params)
     @group_post.group_id = params[:group_id]
     @group_post.user_id = current_user.id
-
     if @group_post.save
-      redirect_to group_group_post_path(@group, @group_post)
+      redirect_to group_group_post_path(@group, @group_post), notice: "作成に成功しました"
     else
+      #バリデーションでのエラーメッセージ出現
       @group = Group.find(params[:group_id])
       render 'new'
     end
@@ -38,17 +41,21 @@ class Public::GroupPostsController < ApplicationController
   end
 
   def update
-    @group_post = GroupPost.find(params[:id])
     @group = Group.find(params[:group_id])
-    @group_post.update(group_post_params)
-    redirect_to group_group_post_path(@group, @group_post)
+    @group_post = GroupPost.find(params[:id])
+    if @group_post.update(group_post_params)
+      redirect_to group_group_post_path(@group, @group_post), notice: "編集に成功しました"
+    else
+      #バリデーションでのエラーメッセージ出現
+      render 'edit'
+    end
   end
 
   def destroy
-    @group = Group.find(params[:group_id])
-    @group_post = GroupPost.find(params[:id])
-    @group_post.destroy
-    redirect_to group_path(@group)
+    group = Group.find(params[:group_id])
+    group_post = GroupPost.find(params[:id])
+    group_post.destroy
+    redirect_to group_path(group), notice: "削除に成功しました"
   end
 
   private
