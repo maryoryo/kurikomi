@@ -5,6 +5,7 @@
   </div>
   <div class="row my-3">
     <div class="ml-auto">
+      <%= render 'layouts/errors', obj: @genre %>
       <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
         <div class="form-field">
           <%= f.label :ジャンル追加 %>
