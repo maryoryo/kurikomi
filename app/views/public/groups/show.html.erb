@@ -1,7 +1,7 @@
-<div class="container col-8">
+<div class="container col-sm-8 col-10">
   <div class="row mt-4">
     <div><%= attachment_image_tag @group, :group_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
-    <h2 class="d-flex align-items-center ml-3">コミュニティ名：<%= @group.name %></h2>
+    <h2 class="name d-flex align-items-center ml-3">コミュニティ名：<%= @group.name %></h2>
   </div>
   
   <div>
@@ -9,16 +9,16 @@
   </div>
   
   <div class="mt-2">
-    <%= link_to "メンバー一覧", group_members_path(@group), class:"btn btn-info col-4" %>
+    <%= link_to "メンバー一覧", group_members_path(@group), class:"btn btn-info col-sm-4 col-10" %>
   </div>
   
   <div class="mt-2">
     <% if @group.owner_id == current_user.id %>
-      <%= link_to " グループを編集する", edit_group_path(@group), class: "btn btn-lg btn-secondary fas fa-users-cog col-4" %>
+      <%= link_to " グループを編集する", edit_group_path(@group), class: "btn btn-lg btn-secondary fas fa-users-cog col-sm-4 col-10" %>
     <% elsif @group.users.include?(current_user) %>
-      <%= link_to "グループから脱退", group_unjoin_path(@group), method: :delete, class: "btn btn-danger" %>
+      <%= link_to "グループから脱退", group_unjoin_path(@group), method: :delete, class: "btn btn-danger col-sm-4 col-10" %>
     <% else %>
-      <%= link_to "グループに参加する", group_join_path(@group), class: "btn btn-success" %>
+      <%= link_to "グループに参加する", group_join_path(@group), class: "btn btn-success col-sm-4 col-10" %>
     <% end %>
   </div>
   
@@ -36,7 +36,6 @@
       <thead class="thead-dark">
         <tr>
           <th>タイトル</th>
-          <th>投稿内容</th>
           <th>投稿者</th>
           <th>コメント数</th>
           <th>Pv数</th>
@@ -46,11 +45,10 @@
       <tbody>
         <% @group_posts.each do |group_post| %>
           <tr>
-            <td><%= group_post.title %></td>
-            <td><%= truncate(group_post.content, length:15) %></td>
+            <td><%= truncate(group_post.title, length:10) %></td>
             <td><%= group_post.user.name %></td>
             <td><%= group_post.group_post_comment.count %></td>
-            <td>閲覧数:<%= group_post.impressionist_count(:filter=>:ip_address) %></td>
+            <td><%= group_post.impressionist_count(:filter=>:ip_address) %></td>
             <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
           </tr>
         <% end %>
@@ -64,7 +62,7 @@
   
   <div class="row justify-content-center my-4">
     <% if @group.owner_id == current_user.id %>
-      <%= link_to "グループを削除する", group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger col-3" %>
+      <%= link_to "グループを削除する", group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger col-sm-3 col-8" %>
     <% end %>
   </div>
   

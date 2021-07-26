@@ -29,20 +29,6 @@ header {
   font-family: "Noto Sans Mono CJK JP"; font-weight: bold;
 }
 
-// #notice {
-//   width: auto;
-//   height: 30px;
-//   color: white;
-//   background-color: blue;
-// }
-
-// #alert {
-//   width: auto;
-//   height: 30px;
-//   color: white;
-//   background-color: red;
-// }
-
 //　エラーメッセージによるレイアウト崩れを修正
 .field_with_errors {
   display: contents;
@@ -62,7 +48,7 @@ header {
 
 .about-contents {
   width: 500px;
-  height: 150px;
+  height: 163px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -88,6 +74,7 @@ header {
   // 背景色の透過
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
+  // background-position: 700px 0px;
   .about-contents {
     width: 800px;
     height: 400px;
@@ -149,4 +136,136 @@ table th {
 table td {
   text-align: center; 
   vertical-align: middle;
+}
+
+
+
+@media screen and (max-width: 425px) {
+  // 背景画像の設定
+.top-visual {
+  background-image: image-url("main.jpg");
+  width: auto;
+  height: 730px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
+.about-contents {
+  width: 300px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-bottom: 20px;
+  h1 {
+    font-size: 27px;
+  }
+}
+
+.beginner-contents {
+  width: 300px;
+  height: 130px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 48px;
+  h3 {font-size: 20px;
+  }
+}
+
+.already_work-contents {
+  width: 300px;
+  height: 130px;
+  background-color: rgba(255, 255, 255, 0.5);
+  h3 {font-size: 20px;
+  }
+}
+
+
+
+// 背景画像の設定
+.about-visual {
+  background-image: image-url("about.jpg");
+  width: auto;
+  height: 500px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  .about-contents {
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+    h2 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 10px;
+    }
+  }
+}
+
+// 背景画像の設定
+.beginner-visual {
+  background-image: image-url("beginner.jpg");
+  width: auto;
+  height: 500px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  .beginner-contents {
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+    h2 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 10px;
+    }
+  }
+}
+
+// 背景画像の設定
+.already_work-visual {
+  background-image: image-url("already_work.jpg");
+  width: auto;
+  height: 500px;
+  background-size: contain;
+  background-size: cover;
+  // 背景色の透過
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  background-position: 800px;
+  .already_work-contents {
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 10px;
+    }
+  }
+}
+
+.nav-item {
+  font-size: 10px;
+}
+
+table th {
+  font-size: 15px;
+}
+
+table td {
+  table-layout: fixed;
+}
+
+// 新規投稿や編集画面のタイトルのフォントサイズ
+.name {
+  font-size: 25px;
+}
 }

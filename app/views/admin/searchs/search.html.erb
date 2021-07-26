@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row my-5">
-    <h2><%= @content %>の検索結果</h2>
-    <% if @model == "user" %>
-      <%= render 'admin/users/index', users: @records %>
-    <% elsif @model == "group" %>
-      <%= render 'admin/groups/index', groups: @records %>
-    <% elsif @model == "genre" %>
-      <%= render 'admin/genres/index', genres: @records %>
-    <% else %>
-      <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
-    <% end %>
+    <div class="col-12">
+      <h2><%= @content %>の検索結果</h2>
+      <% if @model == "user" %>
+        <%= render 'admin/users/index', users: @records %>
+      <% elsif @model == "group" %>
+        <%= render 'admin/groups/index', groups: @records %>
+      <% elsif @model == "genre" %>
+        <%= render 'admin/genres/index', genres: @records %>
+      <% else %>
+        <h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+      <% end %>
+    </div>
   </div>
   
   <div class="pagination">
