@@ -20,13 +20,13 @@ class Admin::GroupsController < ApplicationController
     redirect_to admin_groups_path, notice: "削除に成功しました"
   end
   
-  #グループに紐づいたメンバーの一覧
+  # グループに紐づいたメンバーの一覧
   def members
     @group = Group.find(params[:group_id])
     @group_members = @group.users.page(params[:page]).per(10)
   end
   
-  #ハッシュタグをクリック時その一覧を表示
+  # ハッシュタグをクリック時その一覧を表示
   def hashtag
     @user = current_user
     @tag = Hashtag.find(params[:name])

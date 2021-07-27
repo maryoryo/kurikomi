@@ -8,5 +8,6 @@ class Public::GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
+    @groups = @genre.groups.page(params[:page]).per(10)
   end
 end

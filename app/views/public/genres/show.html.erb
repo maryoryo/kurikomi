@@ -1,2 +1,34 @@
-<h1>Public::Genres#show</h1>
-<p>Find me in app/views/public/genres/show.html.erb</p>
+<div class="container col-sm-8 col-10">
+  <div class="row my-5">
+    <h2 class="font-name">ジャンル名：<%= @genre.name %></h2>
+  </div>
+  <div class="row">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>コミュニティ画像</th>
+          <th>コミュニティ名</th>
+          <th>開設者</th>
+          <th>参加人数</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+        <tr>
+          <td><%= attachment_image_tag group, :group_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60", class:"rounded-circle" %></td>
+          <td><%= group.name %></td>
+          <td><%= group.owner.name %></td>
+          <td><%= group.group_users.count %></td>
+          <td><%= link_to "詳細", group_path(group) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="pagination">
+    <%= paginate @groups %>
+  </div>
+  
+</div>

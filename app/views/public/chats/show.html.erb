@@ -1,18 +1,10 @@
-<div class="container my-5 col-sm-6 col-8">
+<div class="container my-5 col-sm-6 col-10">
   
   <div class="row justify-content-center">
 
     <div>
-      <h1 class="name"><%= @user.name %> さんとのチャット</h1>
+      <h2 class="font-name name"><%= @user.name %> さんとのチャット</h2>
       <div class="col-xs-6">
-        <div id="chat_message-error">
-          <%= render 'layouts/errors', obj: @chat %>
-        </div>
-        <%= form_with model: @chat, method: :post, remote: true do |f| %>
-          <%= f.text_field :message %>
-          <%= f.hidden_field :room_id, value: @chat.room_id %>
-          <%= f.submit "送信", class:"btn btn-success chat-btn" %>
-        <% end %>
         <table class="table">
           <thead>
             <tr>
@@ -25,16 +17,16 @@
             <% @chats.each do |chat| %>
               <% if chat.user_id == current_user.id %>
                 <tr>
-                  <th>
-                    <p style="text-align: left;"><%= chat.message %></p>
+                  <th style="text-align: left;">
+                    <%= chat.message %>
                   </th>
                   <th></th>
                 </tr>
               <% else %>
                 <tr>
                   <th></th>
-                  <th>
-                    <p style="text-align: right;"><%= chat.message %></p>
+                  <th style="text-align: right;">
+                    <%= chat.message %>
                   </th>
                 </tr>
               <% end %>
@@ -43,7 +35,18 @@
           </div>
         </table>
       </div>
+      
     </div>
+    <div id="chat_message-error">
+        <%= render 'layouts/errors', obj: @chat %>
+      </div>
+      <div class="row justify-content-center chat-fixed">
+        <%= form_with model: @chat, method: :post, remote: true do |f| %>
+          <%= f.text_field :message %>
+          <%= f.hidden_field :room_id, value: @chat.room_id %>
+          <%= f.submit "送信", class:"btn btn-success chat-btn" %>
+        <% end %>
+      </div>
   </div>
 </div>
 

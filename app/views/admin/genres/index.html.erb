@@ -1,13 +1,13 @@
-<div class="container col-8">
+<div class="container col-sm-8 col-10">
   <div class="row my-5">
-    <h2>ジャンル一覧</h2>
+    <h2 class="font-name">ジャンル一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
   </div>
   <div class="row my-3">
     <div class="ml-auto">
       <%= render 'layouts/errors', obj: @genre %>
       <%= form_with model: @genre, url: admin_genres_path, method: :post, local: true do |f| %>
-        <div class="form-field">
+        <div class="form-field col-sm-12 col-6">
           <%= f.label :ジャンル追加 %>
           <%= f.text_field :name, :placeholder => "ジャンル名" %>
           <%= f.submit "作成する", class:"btn btn-success" %>

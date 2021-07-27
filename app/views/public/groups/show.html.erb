@@ -1,7 +1,7 @@
 <div class="container col-sm-8 col-10">
   <div class="row mt-4">
     <div><%= attachment_image_tag @group, :group_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
-    <h2 class="name d-flex align-items-center ml-3">コミュニティ名：<%= @group.name %></h2>
+    <h2 class="font-name name d-flex align-items-center ml-3 my-2">コミュニティ名：<%= @group.name %></h2>
   </div>
   
   <div>
@@ -30,7 +30,7 @@
   </div>
   
   <div class="row mt-5">
-    <h4>投稿一覧</h4>
+    <h4 class="font-name">投稿一覧</h4>
     <div class="ml-auto"><%= link_to " 投稿する", new_group_group_post_path(@group.id), class:"btn btn-success far fa-clipboard" %></div>
     <table class="table table-hover">
       <thead class="thead-dark">

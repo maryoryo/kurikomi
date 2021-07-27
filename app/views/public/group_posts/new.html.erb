@@ -3,14 +3,14 @@
   <div class="row justify-content-center">
 
     <div class="card border-dark py-4 px-5 col-10">
-    <h2>投稿フォーム</h2>
+    <h2 class="font-name">投稿フォーム</h2>
       <div>
         <%= render 'layouts/errors', obj: @group_post %>
         <%= form_with(model: [@group, @group_post], url: group_group_posts_path, method: :post, local: true) do |f| %>
 
         <div class="form-field mt-3">
           <%= f.label :タイトル %><br/>
-          <%= f.text_field :title, autofocus: true, class:"form-control-file" %>
+          <%= f.text_field :title, autofocus: true, class:"form-control" %>
         </div>
 
         <div class="form-field mt-3">

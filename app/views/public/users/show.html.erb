@@ -1,9 +1,9 @@
 <div class="container col-sm-6 col-10">
   <div class="row mt-4">
     <div><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
-    <div class="d-flex align-items-center ml-3">チャンネル名：<%= @user.name %></div>
+    <div class="font-name d-flex align-items-center ml-3">ニックネーム：<%= @user.name %></div>
   </div>
-  
+
   <div class="row mt-2">
     <div>
     <%= link_to user_followings_path(@user) do %>
@@ -16,7 +16,7 @@
     <% end %>
     </div>
   </div>
-  
+
   <div class="mt-2">
     <% if current_user != @user %>
       <%= link_to " チャットを始める", chat_path(@user), class:"btn btn-lg btn-info fa fa-comments col-sm-5 col-10" %>
@@ -24,12 +24,12 @@
       <%= link_to " プロフィール編集", edit_user_path(@user), class:"btn btn-lg btn-secondary fas fa-user-cog col-sm-5 col-10" %>
     <% end %>
   </div>
-  
+
   <!--フォローフォロワー機能の非同期通信-->
   <div id="relationship" class="mt-2">
     <%= render 'public/relationships/relationships', user: @user %>
   </div>
-  
+
   <div class="mt-4">
     <h4>概要</h4>
     <div class="card border-dark">
@@ -40,7 +40,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="mt-4">
     <h4>参加コミュニティ</h4>
     <div class="card border-dark">

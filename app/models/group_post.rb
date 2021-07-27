@@ -10,23 +10,20 @@ class GroupPost < ApplicationRecord
   
   has_many :notifications, dependent: :destroy
 
+
   validates :title, presence: true
   validates :content, presence: true
+
 
   def favorited_by?(user)
     group_post_favorites.where(user_id: user.id).exists?
   end
 
-#   is_impressionable
-# ➡︎ Tweetモデルでimpressionistを使用できるようにします。
-
-# counter_cache: true
-# ➡︎ impressions_countカラムがupdateされるようにします。
-
+  # PV数表示機能の記述
   is_impressionable counter_cache: true
   
   
-  #お気に入り機能の通知
+  # お気に入り機能の通知
   def create_notification_favorite(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and group_post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
@@ -47,7 +44,7 @@ class GroupPost < ApplicationRecord
   
   
   
-  #コメント機能の通知
+  # コメント機能の通知
   def create_notification_comment(current_user, group_post_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = GroupPostComment.select(:user_id).where(group_post_id: id).where.not(user_id: current_user.id).distinct

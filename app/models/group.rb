@@ -10,7 +10,7 @@ class Group < ApplicationRecord
   has_many :group_hashtags, dependent: :destroy
   has_many :hashtags, through: :group_hashtags
   
-  #genreで.ownerを使うための記述
+  # genreで.ownerを使うための記述
   belongs_to :owner, class_name: 'User'
   belongs_to :genre
   
@@ -20,11 +20,11 @@ class Group < ApplicationRecord
   validates :genre_id, presence: true
   
   
-  #画像ファイルの付与
+  # 画像ファイルの付与
   attachment :group_image, destroy: false
   
   
-  #グループを検索する時のメソッドを定義
+  # グループを検索する時のメソッドを定義
   def self.search_for(content, method)
     if method == 'perfect'
       Group.where(name: content)
@@ -38,7 +38,7 @@ class Group < ApplicationRecord
   end
   
   
-  #ハッシュタグ機能を作成時のアクションを定義
+  # ハッシュタグ機能を作成時のアクションを定義
   after_create do
     group = Group.find_by(id: id)
     # hashbodyに打ち込まれたハッシュタグを検出
@@ -49,7 +49,7 @@ class Group < ApplicationRecord
       group.hashtags << tag
     end
   end
-  #更新時アクション
+  # 更新時アクション
   before_update do
     group = Group.find_by(id: id)
     group.hashtags.clear
@@ -60,13 +60,7 @@ class Group < ApplicationRecord
     end
   end
   
-  
-  #   is_impressionable
-# ➡︎ Tweetモデルでimpressionistを使用できるようにします。
 
-# counter_cache: true
-# ➡︎ impressions_countカラムがupdateされるようにします。
-  
+  # PV数表示機能の記述
   is_impressionable counter_cache: true
-  
 end

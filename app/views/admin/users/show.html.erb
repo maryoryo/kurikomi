@@ -1,29 +1,29 @@
-<div class="container">
-  
-  <h2><%= @user.name %>さんのページ</h2>
-  <div class="row">
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60" %>
-    <div><%= @user.name %></div>
+<div class="container col-sm-6 col-10">
+  <div class="row mt-4">
+    <div><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
+    <div class="font-name d-flex align-items-center ml-3">チャンネル名：<%= @user.name %></div>
   </div>
-  <table class="tabke">
-    <tbody>
-      <tr>
-        <td>概要</td>
-        <td><%= @user.introduction %></td>
-      </tr>
-      <tr>
-        <td>オススメ動画</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>参加コミュニティ</td>
-        <td>
-          <% @groups.each do |group| %>
-            <%= group.name %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
   
+  <div class="mt-4">
+    <h4>概要</h4>
+    <div class="card border-dark">
+      <% if @user.introduction != nil %>
+        <%= simple_format(Rinku.auto_link(@user.introduction, :all, 'target="_blank"').html_safe) %>
+      <% else %>
+        <%= @user.introduction %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="my-4">
+    <h4>参加コミュニティ</h4>
+    <div class="card border-dark">
+      <% @groups.each do |group| %>
+        <%= link_to admin_group_path(group) do %>
+          <%= group.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 </div>

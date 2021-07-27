@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-
+  # 管理者側のルーティング
   devise_for :admins, controllers: {
     sessions: 'admin/admins/sessions',
     registrations: 'admin/admins/registrations'
@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     
     get 'searchs/search' => 'searchs#search'
     
-    get '/groups/hashtag/:name' => 'groups#hashtag'
+    get 'groups/hashtag/:name' => 'groups#hashtag'
     
     resources :users, only: [:index, :show]
     
     resources :groups, only: [:index, :show, :destroy] do
       get 'members' => 'groups#members'
-      resources :group_posts, only: [:index, :show, :destroy]
+      resources :group_posts, only: [:show, :destroy]
     end
     
     resources :group_posts do
@@ -26,12 +26,10 @@ Rails.application.routes.draw do
     end
     
     resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
-
   end
 
 
-
-
+  # ユーザー側のルーティング
   devise_for :users, controllers: {
     sessions: 'public/users/sessions',
     registrations: 'public/users/registrations'
@@ -44,11 +42,11 @@ Rails.application.routes.draw do
     
     get 'searchs/search' => 'searchs#search'
     
-    get '/groups/hashtag/:name' => 'groups#hashtag'
+    get 'groups/hashtag/:name' => 'groups#hashtag'
     
     get 'notifications/index' => 'notifications#index'
     
-     resources :users, only: [:index, :show, :edit, :update] do
+    resources :users, only: [:index, :show, :edit, :update] do
       get 'users/quit' => 'users#quit'
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
@@ -72,6 +70,4 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :show]
     
   end
-
-
 end

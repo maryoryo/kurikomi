@@ -12,14 +12,14 @@ class Public::GroupsController < ApplicationController
     @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
 
-  #グループ参加のアクション
+  # グループ参加のアクション
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
     redirect_to  group_path(@group)
   end
 
-  #グループから脱退するアクション
+  # グループから脱退するアクション
   def unjoin
     @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
@@ -60,13 +60,13 @@ class Public::GroupsController < ApplicationController
     redirect_to groups_path, notice: "削除に成功しました"
   end
   
-  #グループに紐づいたメンバーの一覧
+  # グループに紐づいたメンバーの一覧
   def members
     @group = Group.find(params[:group_id])
     @group_members = @group.users.page(params[:page]).per(10)
   end
   
-  #ハッシュタグをクリック時その一覧を表示
+  # ハッシュタグをクリック時その一覧を表示
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(name: params[:name])
@@ -77,7 +77,7 @@ class Public::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :group_image, :genre_id, :hashbody, hashtag_ids: [])
+    params.require(:group).permit(:name, :introduction, :group_image, :genre_id, :hashbody)
   end
 
   def ensure_correct_user

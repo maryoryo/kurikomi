@@ -1,10 +1,10 @@
 
-<div class="container my-5 col-6">
+<div class="container my-5 col-sm-6 col-10">
   
   <div class="row justify-content-center">
     
     <div class="card border-dark py-4 px-5">
-    <h2>ジャンル名編集フォーム</h2>
+    <h2 class="font-name">ジャンル名編集フォーム</h2>
       <div>
         <%= render 'layouts/errors', obj: @genre %>
         <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local: true do |f| %>

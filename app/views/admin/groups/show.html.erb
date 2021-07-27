@@ -1,33 +1,38 @@
-<div class="container col-8">
+<div class="container col-sm-8 col-10">
   <div class="row mt-4">
     <div><%= attachment_image_tag @group, :group_image, :fill, 80, 80, fallback: "no-image.png", size: "80x80", class:"rounded-circle" %></div>
-    <h2 class="d-flex align-items-center ml-3">コミュニティ名：<%= @group.name %></h2>
+    <h2 class="font-name name d-flex align-items-center ml-3 my-2">コミュニティ名：<%= @group.name %></h2>
   </div>
 
   <div>
-    <% unless @hashname != nil %>
+    <% unless @tag == nil %>
       <%= link_to admin_path(@tag) do %>
-        <%= @hashname %>
+        <%#= @groups.hashbody %>
+        <%#= @tag.name %>
+        <%#= @groups.hashbody %>
+        <%#= Hashtag.name.find(1) %>
+        <%= render_with_hashtags(@group.hashbody) %>
       <% end %>
     <% end %>
   </div>
 
   <div class="mt-2">
-    <%= link_to "メンバー一覧", admin_group_members_path(@group), class:"btn btn-info col-4" %>
+    <%= link_to "メンバー一覧", admin_group_members_path(@group), class:"btn btn-info col-sm-4 col-10" %>
   </div>
-  
+
   <div>
     <h4 class="mt-3">概要</h4>
-    <div class="card border-dark"><%= @group.introduction %></div>
+    <div class="card border-dark">
+      <%= simple_format(Rinku.auto_link(@group.introduction, :all, 'target="_blank"').html_safe) %>
+    </div>
   </div>
 
   <div class="row mt-5">
-    <h4>投稿一覧</h4>
+    <h4 class="font-name">投稿一覧</h4>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
           <th>タイトル</th>
-          <th>投稿内容</th>
           <th>投稿者</th>
           <th>コメント数</th>
           <th>Pv数</th>
@@ -38,10 +43,9 @@
         <% @group_posts.each do |group_post| %>
           <tr>
             <td><%= group_post.title %></td>
-            <td><%= truncate(group_post.content, length:15) %></td>
             <td><%= group_post.user.name %></td>
             <td><%= group_post.group_post_comment.count %></td>
-            <td>閲覧数:<%= group_post.impressionist_count(:filter=>:ip_address) %></td>
+            <td><%= group_post.impressionist_count(:filter=>:ip_address) %></td>
             <td><%= link_to "詳細", admin_group_group_post_path(@group, group_post) %></td>
           </tr>
         <% end %>
@@ -60,7 +64,7 @@
   </div>
 
   <div class="row justify-content-center my-4">
-    <%= link_to "グループを削除する", admin_group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger col-3" %>
+    <%= link_to "グループを削除する", admin_group_path(@group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger col-sm-3 col-8" %>
   </div>
 
 </div>

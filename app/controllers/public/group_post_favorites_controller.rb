@@ -17,6 +17,7 @@ class Public::GroupPostFavoritesController < ApplicationController
     group_post_favorite.destroy
   end
 
+
   private
 
   def get_group_post

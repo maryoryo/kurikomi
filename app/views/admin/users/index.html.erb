@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row my-5">
-    <h2>ユーザー一覧</h2>
+    <h2 class="font-name">ユーザー一覧</h2>
     <div class="ml-auto"><%= render 'layouts/admin_search' %></div>
   </div>
-  
+
   <%= render 'admin/users/index', users: @users %>
-  
+
   <div class="pagination">
     <%= paginate @users %>
   </div>
-  
+
 </div>

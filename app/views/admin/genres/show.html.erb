@@ -1,8 +1,8 @@
-<div class="container col-8">
+<div class="container col-sm-8 col-10">
   <div class="row my-5">
-    <h2>ジャンル名：<%= @genre.name %></h2>
+    <h2 class="font-name">ジャンル名：<%= @genre.name %></h2>
     <div class="ml-auto mt-5">
-      <%= link_to "ジャンル名編集", edit_admin_genre_path(@genre), class: "btn btn-secondary mr-4" %>
+      <%= link_to "ジャンル名編集", edit_admin_genre_path(@genre), class: "btn btn-secondary" %>
       <%= link_to "ジャンル削除", admin_genre_path(@genre), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
     </div>
   </div>
@@ -24,7 +24,7 @@
           <td><%= group.name %></td>
           <td><%= group.owner.name %></td>
           <td><%= group.group_users.count %></td>
-          <td><%= link_to "詳細", group_path(group) %></td>
+          <td><%= link_to "詳細", admin_group_path(group) %></td>
         </tr>
         <% end %>
       </tbody>

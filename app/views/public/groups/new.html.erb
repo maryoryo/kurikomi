@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     
     <div class="card border-dark py-4 px-5">
-    <h2 class="name">コミュニティ追加</h2>
+    <h2 class="font-name name">コミュニティ追加</h2>
       <div>
         <%= render 'layouts/errors', obj: @group %>
         <%= form_with model: @group, url: groups_path, method: :post, local:true do |f| %>

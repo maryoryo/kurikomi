@@ -16,7 +16,7 @@ class Public::ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
 
-    @chats = @room.chats.order("chats.created_at desc")
+    @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
   end
 

@@ -6,7 +6,7 @@ class Genre < ApplicationRecord
   validates :name, presence: true
   
   
-  #ジャンル検索する時のメソッドを定義
+  # ジャンル検索する時のメソッドを定義
   def self.search_for(content, method)
     if method == 'perfect'
       Genre.where(name: content)

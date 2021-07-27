@@ -1,6 +1,6 @@
-<div class="container col-8 col-10">
+<div class="container col-sm-8 col-10">
   <div class="row mt-4">
-    <h2 class="name">タイトル：<%= @group_post.title %></h2>
+    <h2 class="font-name name">タイトル：<%= @group_post.title %></h2>
   </div>
 
   <div class="mt-2">
@@ -29,16 +29,15 @@
   </div>
   
   <div class="mt-5">
-    <h4>コメント一覧</h4>
+    <h4 class="font-name">コメント一覧</h4>
     <div class="comment">
       <!--ユーザー側のコメント機能の非同期通信-->
       <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
     </div>
-    <div class="row justify-content-center mt-5 col-sm-12 col-11">
+    <div class="comment-fixed row justify-content-center mt-4">
       <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
-        <%=f.label :コメント %>
         <%=f.text_field :comment %>
-        <%=f.submit "送信する",class:"btn btn-success" %>
+        <%=f.submit "コメント",class:"btn btn-success" %>
       <% end %>
     </div>
   </div>
@@ -49,10 +48,10 @@
 
   <div class="row justify-content-center my-5">
     <% if @group_post.user == current_user %>
-      <%= link_to "投稿を編集する", edit_group_group_post_path(@group_post.group, @group_post), class:"btn btn-secondary mt-2 col-sm-2 col-6" %>
-      <%= link_to "投稿を削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger mt-2 mx-5 col-sm-2 col-6" %>
+      <%= link_to "投稿を編集する", edit_group_group_post_path(@group_post.group, @group_post), class:"btn btn-secondary mt-2 col-sm-3 col-6" %>
+      <%= link_to "投稿を削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger mt-2 mx-5 col-sm-3 col-6" %>
     <% end %>
-    <%= link_to "グループトップへ", group_path(@group), class:"btn btn-primary mt-2 col-sm-2 col-6" %>
+    <%= link_to "グループトップへ", group_path(@group), class:"btn btn-primary mt-2 col-sm-3 col-6" %>
   </div>
 
 </div>
