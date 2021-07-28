@@ -18,12 +18,12 @@
               <div>があなたをフォローしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></div>
             <% when 'favorite' then %>
               <% if notification.group_post.user_id == visited.id %>
-                が<%= link_to "あなたの投稿", group_group_post_path(notification.group_post.group, notification.group_post) %>
+                が<%= link_to "あなたの投稿", group_group_post_path(notification.group_post.group_id, notification.group_post) %>
                 <div>にいいねしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></div>
-              <% end %>  
+              <% end %>
             <% when 'comment' then %>
               <% if notification.group_post.user_id == visited.id %>
-                が<%= link_to "あなたの投稿", group_group_post_path(notification.group_post.group, notification.group_post) %>
+                が<%= link_to "あなたの投稿", group_group_post_path(notification.group_post.group_id, notification.group_post) %>
                 <div>にコメントしました<%= " (#{time_ago_in_words(notification.created_at)}前)" %></div>
               <% end %>
             <% end %>
