@@ -42,4 +42,4 @@ YouTubeをこれから始める方～チャンネル登録者数5万人まで（
 - IDE：Cloud9
 
 ## 使用素材
->https://developers.google.com/youtube/v3/getting-started?hl=ja
+>https://pixabay.com/ja/
