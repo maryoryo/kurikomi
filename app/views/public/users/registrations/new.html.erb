@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     
     <div class="card border-dark py-4 px-5">
-      <h2 class="font-name">新規登録画面</h2>
+      <h2 class="font-name name">新規登録画面</h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "public/users/shared/error_messages", resource: resource %>
   
@@ -31,7 +31,7 @@
         </div>
   
         <div class="actions mt-3">
-          <%= f.submit "登録する", class:"btn btn-success" %>
+          <%= f.submit "登録する", class:"font-name btn btn-success" %>
         </div>
       <% end %>
   

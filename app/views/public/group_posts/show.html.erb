@@ -4,11 +4,11 @@
   </div>
 
   <div class="mt-2">
-    <h4>投稿者：<%= @group_post.user.name %></h4>
+    <h5 class="font-name">投稿者：<%= @group_post.user.name %></h5>
   </div>
   
   <div class="mt-4">
-    <h4>投稿内容</h4>
+    <h4 class="font-name">投稿内容</h4>
     <div class="card border-dark">
       <%= simple_format(Rinku.auto_link(@group_post.content, :all, 'target="_blank"').html_safe) %>
     </div>
@@ -37,7 +37,7 @@
     <div class="comment-fixed row justify-content-center mt-4">
       <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
         <%=f.text_field :comment %>
-        <%=f.submit "コメント",class:"btn btn-success" %>
+        <%=f.submit "コメント",class:"font-name btn btn-success" %>
       <% end %>
     </div>
   </div>
@@ -48,10 +48,10 @@
 
   <div class="row justify-content-center my-5">
     <% if @group_post.user == current_user %>
-      <%= link_to "投稿を編集する", edit_group_group_post_path(@group_post.group, @group_post), class:"btn btn-secondary mt-2 col-sm-3 col-6" %>
-      <%= link_to "投稿を削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？", class:"btn btn-danger mt-2 mx-5 col-sm-3 col-6" %>
+      <%= link_to "投稿を編集する", edit_group_group_post_path(@group_post.group, @group_post), class:"font-name btn btn-secondary mt-2 col-sm-3 col-6" %>
+      <%= link_to "投稿を削除する", group_group_post_path(@group_post.group, @group_post), method: :delete, "data-confirm" => "削除しますか？", class:"font-name btn btn-danger mt-2 mx-5 col-sm-3 col-6" %>
     <% end %>
-    <%= link_to "グループトップへ", group_path(@group), class:"btn btn-primary mt-2 col-sm-3 col-6" %>
+    <%= link_to "グループトップへ", group_path(@group), class:"font-name btn btn-primary mt-2 col-sm-3 col-6" %>
   </div>
 
 </div>

@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     
     <div class="card border-dark py-4 px-5">
-    <h2 class="font-name">ジャンル名編集フォーム</h2>
+    <h2 class="font-name name">ジャンル名編集フォーム</h2>
       <div>
         <%= render 'layouts/errors', obj: @genre %>
         <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local: true do |f| %>
@@ -15,7 +15,7 @@
         </div>
         
         <div class="form-field mt-3">
-          <%= f.submit "編集する", class:"btn btn-success" %>
+          <%= f.submit "編集する", class:"font-name btn btn-success" %>
         </div>
         <% end %>
       </div>

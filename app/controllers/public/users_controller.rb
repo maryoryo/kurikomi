@@ -18,9 +18,6 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    url = params[:user][:introduction]
-    url = url.last(11)
-    @user.introduction = url
     if @user.update(user_params)
       redirect_to user_path(@user)
     else

@@ -1,8 +1,8 @@
 class Notification < ApplicationRecord
-  
+
   # 通知を降順で表示
   default_scope -> { order(created_at: :desc) }
-  
+
   belongs_to :group_post, optional: true
   belongs_to :group_post_comment, optional: true
   belongs_to :room, optional: true

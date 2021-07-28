@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-12">
-      <h2><%= @content %>の検索結果</h2>
+      <h2 class="font-name"><%= @content %>の検索結果</h2>
       <% if @model == "user" %>
         <%= render 'admin/users/index', users: @records %>
       <% elsif @model == "group" %>

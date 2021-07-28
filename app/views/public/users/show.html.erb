@@ -19,9 +19,13 @@
 
   <div class="mt-2">
     <% if current_user != @user %>
-      <%= link_to " チャットを始める", chat_path(@user), class:"btn btn-lg btn-info fa fa-comments col-sm-5 col-10" %>
+      <%= link_to chat_path(@user), class:"font-name btn btn-info col-sm-5 col-8" do %>
+        <i class="fa fa-comments"></i> チャットを始める
+      <% end %>
     <% else %>
-      <%= link_to " プロフィール編集", edit_user_path(@user), class:"btn btn-lg btn-secondary fas fa-user-cog col-sm-5 col-10" %>
+      <%= link_to edit_user_path(@user), class:"font-name btn btn-secondary col-sm-5 col-8" do %>
+        <i class="fas fa-user-cog"></i> プロフィール編集
+      <% end %>
     <% end %>
   </div>
 
@@ -31,7 +35,7 @@
   </div>
 
   <div class="mt-4">
-    <h4>概要</h4>
+    <h4 class="font-name">概要</h4>
     <div class="card border-dark">
       <% if @user.introduction != nil %>
         <%= simple_format(Rinku.auto_link(@user.introduction, :all, 'target="_blank"').html_safe) %>
@@ -42,19 +46,30 @@
   </div>
 
   <div class="mt-4">
-    <h4>参加コミュニティ</h4>
-    <div class="card border-dark">
-      <% @groups.each do |group| %>
-        <%= link_to group_path(group) do %>
-          <%= group.name %>
+    <h4 class="font-name">参加コミュニティ</h4>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>コミュニティ画像</th>
+          <th>コミュニティ名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+        <tr>
+          <td><%= attachment_image_tag group, :group_image, :fill, 60, 60, fallback: "no-image.png", size: "60x60", class:"rounded-circle" %></td>
+          <td><%= group.name %></td>
+          <td><%= link_to "詳細", group_path(group) %></td>
+        </tr>
         <% end %>
-      <% end %>
-    </div>
+      </tbody>
+    </table>
   </div>
 
   <div class="row justify-content-center my-4">
     <% if @user.id == current_user.id %>
-      <%= link_to "退会する",user_users_quit_path(@user), class:"btn btn-danger col-5" %>
+      <%= link_to "退会する",user_users_quit_path(@user), class:"font-name btn btn-danger col-5" %>
     <% end %>
   </div>
 

@@ -8,9 +8,8 @@ class Admin::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @hashname = @group.hashbody
+    @hashname = @group.hashtags
     @tag = @group.hashtags.find_by(params[:name])
-    
     @group_posts = @group.group_posts.page(params[:page]).per(10)
   end
   

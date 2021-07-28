@@ -2,7 +2,7 @@
 <% notification = @notifications.where.not(visitor_id: current_user.id) %>
 
 <% if notification.exists? %>
-  <%= render notification, group_post: @group_post, group: @group %>
+  <%= render notification  %>
 <% else %>
   <div class="container">
     <div class="row justify-content-center my-4">

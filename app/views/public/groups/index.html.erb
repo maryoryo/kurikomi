@@ -4,8 +4,10 @@
     <div class="ml-auto"><%= render 'layouts/public_search' %></div>
   </div>
   <div class="row my-4">
-    <div class="ml-auto">
-      <%= link_to " コミュニティを追加", new_group_path, class:"btn btn-success fas fa-users" %>
+    <div class="ml-auto mr-3">
+      <%= link_to new_group_path, class:"font-name btn btn-success" do %>
+        <i class="fas fa-users"></i> コミュニティを追加
+      <% end %>
     </div>
   </div>
   
