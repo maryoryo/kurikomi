@@ -30,7 +30,7 @@ YouTubeをこれから始める方～チャンネル登録者数5万人まで（
 
 ## 設計書
 >ER図
->https://app.diagrams.net/#G1Hh527qGAsPt7U1PZXUxDIvgcSnvRQhOe
+>https://app.diagrams.net/#G1Hh527qGAsPt7U1PZXUxDIvgcSnvRQhOe</br>
 >テーブル定義書
 >https://docs.google.com/spreadsheets/d/1ZbIIw0o8UAjTz35osCerpscZGIgpnT1cqxjryVLVXH4/edit#gid=1706844268
 
