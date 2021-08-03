@@ -34,7 +34,7 @@
       <!--ユーザー側のコメント機能の非同期通信-->
       <%= render 'public/group_post_comments/group_post_comments', group_post: @group_post %>
     </div>
-    <div class="comment-fixed row justify-content-center mt-4">
+    <div class="comment-fixed row justify-content-center shadow-lg mt-4">
       <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
         <%=f.text_field :comment %>
         <%=f.submit "コメント",class:"font-name btn btn-success" %>

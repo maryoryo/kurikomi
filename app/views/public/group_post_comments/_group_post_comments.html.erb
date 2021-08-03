@@ -9,7 +9,7 @@
       <div class="my-2"><%= simple_format(group_post_comment.comment) %></div>
     </div>
     <div class="row justify-content-center">
-      <% if group_post.user == current_user %>
+      <% if group_post_comment.user == current_user %>
         <%= link_to "削除", group_post_group_post_comment_path(group_post.id, group_post_comment.id), method: :delete, remote: true, class: "font-name btn btn-sm btn-danger mb-2" %>
       <% end %>
     </div>

@@ -40,7 +40,7 @@
     <div id="chat_message-error">
         <%= render 'layouts/errors', obj: @chat %>
       </div>
-      <div class="row justify-content-center chat-fixed">
+      <div class="row justify-content-center chat-fixed shadow-lg">
         <%= form_with model: @chat, method: :post, remote: true do |f| %>
           <%= f.text_field :message %>
           <%= f.hidden_field :room_id, value: @chat.room_id %>
