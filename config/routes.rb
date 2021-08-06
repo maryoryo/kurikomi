@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # 管理者側のルーティング
   devise_for :admins, controllers: {
     sessions: 'admin/admins/sessions',
-    registrations: 'admin/admins/registrations'
+    registrations: 'admin/admins/registrations',
+    passwords: 'admin/admins/passwords'
   }
   namespace :admin do
     get 'homes/top' => 'homes#top'
@@ -32,7 +33,8 @@ Rails.application.routes.draw do
   # ユーザー側のルーティング
   devise_for :users, controllers: {
     sessions: 'public/users/sessions',
-    registrations: 'public/users/registrations'
+    registrations: 'public/users/registrations',
+    passwords: 'public/users/passwords'
   }
   scope module: :public do
     root 'homes#top'
