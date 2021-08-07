@@ -31,40 +31,45 @@
     </div>
   </div>
   
-  <div class="row mt-5">
-    <h4 class="font-name my-2">投稿一覧</h4>
-    <div class="ml-auto my-2">
-      <%= link_to new_group_group_post_path(@group.id), class:"font-name btn btn-success" do %>
-        <i class="far fa-clipboard"></i> 投稿する
-      <% end %>
-    </div>
-    <table class="table table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th>タイトル</th>
-          <th>投稿者</th>
-          <th>コメント数</th>
-          <th>PV数</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @group_posts.each do |group_post| %>
-          <tr>
-            <td><%= truncate(group_post.title, length:10) %></td>
-            <td><%= group_post.user.name %></td>
-            <td><%= group_post.group_post_comment.count %></td>
-            <td><%= group_post.impressionist_count(:filter=>:ip_address) %></td>
-            <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
-          </tr>
+  <!--グループに参加しているユーザーのみ投稿一覧を見る事が出来る-->
+  <% if @group.users.include?(current_user) %>
+    <div class="row mt-5">
+      <h4 class="font-name my-2">投稿一覧</h4>
+      <div class="ml-auto my-2">
+        <%= link_to new_group_group_post_path(@group.id), class:"font-name btn btn-success" do %>
+          <i class="far fa-clipboard"></i> 投稿する
         <% end %>
-      </tbody>
-    </table>
-  </div>
-  
-  <div class="pagination">
-    <%= paginate @group_posts %>
-  </div>
+      </div>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>タイトル</th>
+            <th>投稿者</th>
+            <th>コメント数</th>
+            <th>PV数</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @group_posts.each do |group_post| %>
+            <tr>
+              <td><%= truncate(group_post.title, length:10) %></td>
+              <td><%= group_post.user.name %></td>
+              <td><%= group_post.group_post_comment.count %></td>
+              <td><%= group_post.impressionist_count(:filter=>:ip_address) %></td>
+              <td><%= link_to "詳細", group_group_post_path(@group, group_post) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="pagination">
+      <%= paginate @group_posts %>
+    </div>
+  <% else %>
+    <div class="row justify-content-center font-name my-4">投稿を見るにはグループに参加しましょう！</div>
+  <% end %>
   
   <div class="row justify-content-center my-4">
     <% if @group.owner_id == current_user.id %>
