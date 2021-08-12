@@ -20,6 +20,8 @@
       <% unless user_signed_in? || admin_signed_in? %>
         <div class="pb-3"><%= link_to "新規登録", new_user_registration_path, class:"btn btn-success form-control" %></div>
         <div><%= link_to "ログイン", new_user_session_path, class:"btn btn-primary form-control" %></div>
+        <div><%= link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, method: :post %></div>
+        <div><%= link_to "Twitterでログイン", user_twitter_omniauth_authorize_path, method: :post %></div>
       <% end %>
     </div>
   </div>
