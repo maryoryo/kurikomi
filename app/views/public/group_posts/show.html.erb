@@ -37,7 +37,7 @@
     <div class="comment-fixed row justify-content-center shadow-lg mt-4">
       <%= form_with model: @group_post_comment, url: group_post_group_post_comments_path(@group_post), remote: true do |f| %>
         <%=f.text_field :comment %>
-        <%=f.submit "コメント",class:"font-name btn btn-success" %>
+        <%=f.submit "コメント", class:"font-name btn btn-success" %>
       <% end %>
     </div>
   </div>

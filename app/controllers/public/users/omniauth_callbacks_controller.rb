@@ -49,7 +49,7 @@ class Public::Users::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     end
   end
 
-  # def failure
-  #   redirect_to root_path
-  # end
+  def failure
+    redirect_to root_path
+  end
 end
