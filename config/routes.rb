@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       resources :group_post_comments, only: [:destroy]
     end
     
-    resources :genres, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :genres, only: [:index, :show, :edit, :new, :create, :update, :destroy]
   end
 
 

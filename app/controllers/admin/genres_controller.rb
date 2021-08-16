@@ -15,6 +15,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     @genre.save
+    @genres = Genre.all.page(params[:page]).per(10)
     #   redirect_to admin_genres_path, notice: "作成に成功しました"
     # else
     #   @genres = Genre.all.page(params[:page]).per(10)

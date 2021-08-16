@@ -1,5 +1,2 @@
-$("#genre-new").html("<%= j(render 'admin/genres/new', genres: @genres) %>");
-$("#content").val("");
-
-$(".comment").html("<%= j(render 'public/group_post_comments/group_post_comments',group_post: @group_post) %>");
-$("#group_post_comment_comment").val("");
+$('#genre-new').html("<%= j(render 'admin/genres/index', genres: @genres) %>");
+$("#genre_name").val("");
