@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # 管理者側のルーティング
@@ -72,5 +73,10 @@ Rails.application.routes.draw do
     
     resources :genres, only: [:index, :show]
     
+    get 'inquiries/index'
+    post 'inquiries/create'
+    post 'inquiries/confirm'
+    get 'inquiries/thanks'
+  
   end
 end

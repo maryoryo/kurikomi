@@ -1,0 +1,35 @@
+<div class="container my-5 col-sm-6 col-10">
+  
+  <div class="row justify-content-center">
+    
+    <div class="card border-dark py-4 px-5">
+    <h2 class="font-name name">お問い合わせ</h2>
+      <div>
+        <%= render 'layouts/errors', obj: @inquiry %>
+        <%= form_with url: inquiries_confirm_path, local: true do |f| %>
+        
+        <div class="field mt-3">
+          <%= f.label :名前 %>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+        <div class="field mt-3">
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :email, class:"form-control" %>
+        </div>
+        <div class="field mt-3">
+          <%= f.label :件名 %>
+          <%= f.text_field :subject, class:"form-control" %>
+        </div>
+        <div class="field mt-3">
+          <%= f.label :お問い合わせ内容 %>
+          <%= f.text_field :message, class:"form-control" %>
+        </div>
+        <div class="field mt-3">
+          <%= f.submit "入力内容確認", class:"font-name btn btn-success" %>
+        </div>
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
