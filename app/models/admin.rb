@@ -12,5 +12,5 @@ class Admin < ApplicationRecord
       admin.password = SecureRandom.urlsafe_base64
     end
   end
-         
+   
 end
