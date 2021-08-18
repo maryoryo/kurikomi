@@ -60,6 +60,8 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   
+  before_action :ensure_normal_user, only: :destroy
+  
   def create
     if params[:sns_auth] == 'true'
       pass = Devise.friendly_token    # PWの自動生成
@@ -67,6 +69,15 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:password_confirmation] = pass
     end
     super
+  end
+  
+  
+  private
+  
+  def ensure_normal_user
+    if resource.email == 'guest1user@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    end
   end
   
 end

@@ -44,6 +44,15 @@ class User < ApplicationRecord
   # 画像ファイルの付与
   attachment :profile_image, destroy: false
   
+  
+  # ゲストユーザーでのログイン機能を記述
+  def self.guest
+    find_or_create_by!(email: 'guest1user@example.com') do |user|
+      user.name = 'guest'
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+  
 
   # ユーザーを検索するときのメソッドを定義
   def self.search_for(content, method)

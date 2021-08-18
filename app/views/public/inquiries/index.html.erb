@@ -6,7 +6,7 @@
     <h2 class="font-name name">お問い合わせ</h2>
       <div>
         <%= render 'layouts/errors', obj: @inquiry %>
-        <%= form_with url: inquiries_confirm_path, local: true do |f| %>
+        <%= form_with model: @inquiry, url: inquiries_confirm_path, local: true do |f| %>
         
         <div class="field mt-3">
           <%= f.label :名前 %>
@@ -24,7 +24,7 @@
           <%= f.label :お問い合わせ内容 %>
           <%= f.text_field :message, class:"form-control" %>
         </div>
-        <div class="field mt-3">
+        <div class="row justify-content-center field mt-3">
           <%= f.submit "入力内容確認", class:"font-name btn btn-success" %>
         </div>
         

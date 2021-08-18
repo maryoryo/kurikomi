@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     passwords: 'public/users/passwords',
     omniauth_callbacks: 'public/users/omniauth_callbacks'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'public/users/sessions#guest_sign_in'
+  end
+  
   scope module: :public do
     root 'homes#top'
     get 'homes/about' => 'homes#about', as: 'about'

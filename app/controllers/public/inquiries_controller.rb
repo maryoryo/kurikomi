@@ -8,7 +8,7 @@ class Public::InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.send_mail(@inquiry).deliver_now
-      redirect_to thanks_path
+      redirect_to inquiries_thanks_path
     else
       render :new
     end
@@ -16,10 +16,8 @@ class Public::InquiriesController < ApplicationController
 
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
-    if @inquiry.valid?
-      render :action => 'confirm'
-    else
-      render :action => 'index'
+    if @inquiry.invalid?
+      render :index
     end
   end
 

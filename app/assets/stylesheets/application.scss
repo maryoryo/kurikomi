@@ -43,7 +43,7 @@ header {
 .top-visual {
   background-image: image-url("main.jpg");
   width: auto;
-  height: 700px;
+  height: 730px;
   background-size: contain;
   background-size: cover;
   // 背景色の透過
@@ -176,9 +176,10 @@ table td {
 .top-visual {
   background-image: image-url("main.jpg");
   width: auto;
-  height: 730px;
+  height: 850px;
   background-size: contain;
   background-size: cover;
+  background-position: 840px 800px;
   // 背景色の透過
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;

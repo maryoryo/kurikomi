@@ -1,6 +1,9 @@
 <div class="top-visual">
   <div class="container">
-    <div class="row py-5">
+    <div class="row justify-content-center py-4">
+      <%= link_to "ゲストユーザー（閲覧用）でログイン", users_guest_sign_in_path, method: :post, class:"font-name btn btn-warning" %>
+    </div>
+    <div class="row pb-5">
       <div class="about-contents mx-auto text-white">
         <h1 class="text-center py-4">クリコミへようこそ！</h1>
         <div class="infomation text-right my-2 mr-3"><%= link_to "概要へ", about_path, class:"btn btn-info" %></div>

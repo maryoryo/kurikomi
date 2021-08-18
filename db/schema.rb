@@ -139,10 +139,10 @@ ActiveRecord::Schema.define(version: 2021_08_17_105530) do
   end
 
   create_table "inquiries", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.integer "subject", null: false
-    t.text "message", null: false
+    t.string "name"
+    t.string "email"
+    t.string "subject"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
