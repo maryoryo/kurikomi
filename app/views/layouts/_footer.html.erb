@@ -1,8 +1,14 @@
 <footer>
   <div class="container">
-    <div class="row justify-content-center pt-5 pb-2 text-white">Copy right © kurikomi All Rights Reserved.</div>
-    <div class="row justify-content-center py-4">
+    <div class="row justify-content-center pt-3 pb-1 text-white">Copy right © kurikomi All Rights Reserved.</div>
+    <div class="row justify-content-center py-3">
       <%= link_to "お問い合わせ", inquiries_index_path, class:"btn btn-secondary" %>
+    </div>
+    <div class="row justify-content-end">
+      <% unless admin_signed_in? || user_signed_in? || current_user == Admin.guest %>
+        <%= link_to "管理者ログインへ", new_admin_session_path, class:"text-white" %>
+        <%= link_to "管理者ゲストログイン", admins_guest_sign_in_path, method: :post, class:"font-name btn btn-warning ml-3" %>
+      <% end %>
     </div>
   </div>
 </footer>

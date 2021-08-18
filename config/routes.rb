@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     registrations: 'admin/admins/registrations',
     passwords: 'admin/admins/passwords'
   }
+  devise_scope :admin do
+    post 'admins/guest_sign_in' => 'admin/admins/sessions#guest_sign_in'
+  end
+  
   namespace :admin do
     get 'homes/top' => 'homes#top'
     

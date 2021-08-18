@@ -1,7 +1,12 @@
 <div class="top-visual">
   <div class="container">
     <div class="row justify-content-center py-4">
-      <%= link_to "ゲストユーザー（閲覧用）でログイン", users_guest_sign_in_path, method: :post, class:"font-name btn btn-warning" %>
+      <% if user_signed_in? && current_user == User.guest %> 
+        <div class="bg-primary text-center text-white col-md-5 col-8">ゲストユーザーでログイン中</div>
+      <% elsif user_signed_in? || admin_signed_in? %>
+      <% else %>
+        <%= link_to "ゲストユーザー（閲覧用）でログイン", users_guest_sign_in_path, method: :post, class:"font-name btn btn-warning" %>
+      <% end %>
     </div>
     <div class="row pb-5">
       <div class="about-contents mx-auto text-white">

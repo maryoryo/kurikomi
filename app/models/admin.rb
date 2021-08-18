@@ -7,5 +7,10 @@ class Admin < ApplicationRecord
   has_many :group_admins, dependent: :destroy
   has_many :groups, through: :group_admins
   
+  def self.guest
+    find_or_create_by!(email: 'adminguest@example.com') do |admin|
+      admin.password = SecureRandom.urlsafe_base64
+    end
+  end
          
 end
