@@ -14,15 +14,15 @@ class Public::GroupsController < ApplicationController
 
   # グループ参加のアクション
   def join
-    @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to  group_path(@group)
+    group = Group.find(params[:group_id])
+    group.users << current_user
+    redirect_to  group_path(group)
   end
 
   # グループから脱退するアクション
   def unjoin
-    @group = Group.find(params[:group_id])
-    @group.users.delete(current_user)
+    group = Group.find(params[:group_id])
+    group.users.delete(current_user)
     redirect_to groups_path
   end
 
